@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".Home.water.Water">
+    <TextView
+        android:id="@+id/tit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Track Your Water Intake"
+        tools:ignore="MissingConstraints"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/rec_water"
+        />
+
+    <LinearLayout
+    android:id="@+id/add_water"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="@+id/rc"
+    app:layout_constraintHorizontal_bias="0.853"
+    app:layout_constraintStart_toStartOf="@+id/rc"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.922"
+    android:backgroundTint="#D0C9C9"
+    android:background="@drawable/edit_text"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Add 1 Glass"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+    <ImageView
+        android:id="@+id/addpost"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_add_circle_24"
+         />
+</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

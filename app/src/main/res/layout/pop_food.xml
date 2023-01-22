@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    android:background="@color/transparent"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    >
+    <androidx.cardview.widget.CardView  android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp"
+        android:layout_gravity="center">
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            android:hint="Enter Foods Name"
+            app:boxStrokeErrorColor="#F60404"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeColor="#F1C43D"
+            android:padding="5dp"
+            app:hintTextColor="@color/dark_orange"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/foodt"
+                android:maxLines="3"
+                android:maxLength="100"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxHeight="150dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn"
+            android:text="add"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"/>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

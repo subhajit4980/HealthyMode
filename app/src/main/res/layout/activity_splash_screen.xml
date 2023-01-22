@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF9800"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".Splash_screen">
+
+    <ImageView
+        android:id="@+id/virusc"
+        android:layout_width="wrap_content"
+        android:layout_height="306dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="20dp"
+        android:baselineAligned="false"
+        android:src="@drawable/logo1" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bangers"
+        android:text="passion for sports"
+        android:textAlignment="center"
+        android:textColor="#C10042"
+        android:textSize="50sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/develop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="59dp"
+        android:text="Developed By subhajit patra"
+        android:textAlignment="center"
+        android:textColor="#980A00"
+        android:textSize="25sp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

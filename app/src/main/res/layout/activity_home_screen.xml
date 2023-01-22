@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.Spodemy.Home.Home_screen">
+<FrameLayout
+    android:id="@+id/frg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/buttonnav"
+    tools:ignore="NotSibling">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/buttonnav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/white"
+        app:itemTextColor="@color/black"
+        app:itemIconTint="@color/black"
+        app:itemIconSize="30dp"
+        app:itemPaddingBottom="5dp"
+        app:menu="@menu/nav_menu"
+        android:layout_gravity="bottom"/>
+
+</FrameLayout>
+
+</RelativeLayout>

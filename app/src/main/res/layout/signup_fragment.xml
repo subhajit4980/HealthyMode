@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <EditText
+            android:id="@+id/fullname"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_text"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:ems="18"
+            android:textColor="@color/black"
+            android:hint=" Full Name"
+            android:textColorHint="@color/dark_grey"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:textSize="17sp"
+            tools:ignore="HardcodedText" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            app:boxStrokeColor="@color/dark_grey"
+            android:layout_height="wrap_content"
+            app:boxCornerRadiusTopEnd="21dp"
+            app:boxCornerRadiusBottomEnd="21dp"
+            app:boxCornerRadiusBottomStart="21dp"
+            app:boxCornerRadiusTopStart="21dp"
+            >
+            <AutoCompleteTextView
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:textSize="17dp"
+                android:text="Select Gender"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginTop="10dp"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/edit_text"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:ems="10"
+            android:hint=" Email address"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:ems="20"
+            android:hint=" Password"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text"
+            android:drawableStart="@drawable/ic_baseline_phone_24"
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="phone|number"
+            android:paddingStart="15dp"
+            android:paddingEnd="5dp"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/dob"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text"
+            android:drawableLeft="@drawable/ic_baseline_date_range_24"
+            android:hint=" DATE OF BIRTH"
+            android:inputType=""
+            android:gravity="left|center"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signupbtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/btn"
+        android:text="register"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.86"
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
