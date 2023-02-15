@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/home_t"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/nav_bar_icon_home"
         android:title="Home"/>
     <item
         android:id="@+id/plan"
-        android:icon="@drawable/ic_baseline_next_plan_24"
+        android:icon="@drawable/nav_bar_icon_plan"
         android:title="Plans"/>
+    <item
+        android:id="@+id/diet"
+        android:icon="@drawable/baseline_food_bank_24"
+        android:title="Foods"/>
     <item
         android:id="@+id/profile"
         android:icon="@drawable/ic_baseline_perm_identity_24"

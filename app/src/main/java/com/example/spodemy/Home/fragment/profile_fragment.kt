@@ -23,12 +23,17 @@ import kotlinx.android.synthetic.main.fragment_profile_fragment.*
 import java.time.LocalDate
 import android.Manifest
 import android.content.pm.PackageManager
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class profile_fragment : Fragment() {
     private  var root:View?=null
-    private val LOCATION_PERMISSION_REQUEST_CODE = 1
+    private var userDitails: DocumentReference =  Firebase.firestore.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid.toString().toString())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -57,46 +62,30 @@ class profile_fragment : Fragment() {
                 }
             }
         }
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
 
-            activity?.let { it1 ->
-                ActivityCompat.requestPermissions(
-                    it1,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    LOCATION_PERMISSION_REQUEST_CODE
-                )
-            }
-        }
         edit.setOnClickListener {
             startActivity(Intent(activity, Profile::class.java))
         }
-        val water: CardView = root!!.findViewById(R.id.watercd)
+        val water: LinearLayout = root!!.findViewById(R.id.waterT)
         water.setOnClickListener {
-            val curr_date = LocalDate.now()
-            val waterr = water(curr_date.toString(), 0)
-            val ref: DatabaseReference =
-                FirebaseDatabase.getInstance()
-                    .getReference("Healthify/users/${FirebaseAuth.getInstance().currentUser!!.uid.toString()}/Water")
-            ref.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (!snapshot.hasChild(curr_date.toString())) {
-                        ref.child(curr_date.toString())
-                            .setValue(waterr)
-                    }
-                }
+//            val curr_date = LocalDate.now()
+//            val water= mapOf(
+//                "Date" to curr_date.toString(),
+//                "No of glass" to "0"
+//            )
+//            userDitails.collection("water track").document(curr_date.toString()).get().addOnSuccessListener {
+//                snapshot->
+//                if (snapshot.exists())
+//                {
+//
+//                }else{
+//                    userDitails.collection("water track").document(curr_date.toString()).set(water)
+//                }
+//            }
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
             startActivity(Intent(activity, Water::class.java))
         }
-        val food: CardView = root!!.findViewById(R.id.food)
+        val food: LinearLayout = root!!.findViewById(R.id.foodT)
         food.setOnClickListener {
             startActivity(Intent(activity, Food_track::class.java))
         }
@@ -108,16 +97,24 @@ class profile_fragment : Fragment() {
         }
         return root
     }
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, you can access the location here
-            } else {
-                // Permission denied, you can show a message to the user
-                Toast.makeText(activity, "Please give the location permission", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+
 
 }
+
+
+//            val waterr = water(curr_date.toString(), 0)
+//            val ref: DatabaseReference =
+//                FirebaseDatabase.getInstance()
+//                    .getReference("Healthify/users/${FirebaseAuth.getInstance().currentUser!!.uid.toString()}/Water")
+//            ref.addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    if (!snapshot.hasChild(curr_date.toString())) {
+//                        ref.child(curr_date.toString())
+//                            .setValue(waterr)
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    TODO("Not yet implemented")
+//                }
+//            })

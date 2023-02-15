@@ -26,6 +26,8 @@ import com.example.spodemy.data.fit
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.signup_fragment.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,7 +43,7 @@ class signup_fragment(): Fragment() {
 //    private var selected_month:String?=null
 //    private var selected_day:String?=null
     private  var age:String?=null
-
+    private var db =Firebase.firestore
     companion object{
         const val TAG="TAG"
     }
@@ -121,9 +123,11 @@ fun createuser(){
 //                        progressbar.visibility=View.GONE
                         progressBarDialog!!.dismiss()
                     }
+
+
+                    val currenuser=fAuth.currentUser!!.uid
                     ref= FirebaseDatabase.getInstance().getReference("Healthify/users")
 //                    val getid=ref.push().key
-                    val currenuser=fAuth.currentUser!!.uid
                     val User= User(fullname.text.toString(),email.text.toString(),password.text.toString(),phone.text.toString(),dob.text.toString(),chn!!.toString(),age.toString())
                     ref.child(currenuser).setValue(User).addOnSuccessListener {
                         val ref: DatabaseReference =
@@ -144,6 +148,32 @@ fun createuser(){
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+//firestore data store
+                    val usermap= hashMapOf(
+                        "fullname" to fullname.text.toString().trim(),
+                        "email" to email.text.toString().trim(),
+                        "password" to password.text.toString().trim(),
+                        "phone" to phone.text.toString().trim(),
+                        "dob" to dob.text.toString().trim(),
+                        "gender" to chn.toString().trim(),
+                        "age" to age.toString().trim()
+                    )
+                    db.collection("user").document(currenuser.toString()).set(usermap)
+                        .addOnSuccessListener {
+                            ffullname.text.clear()
+                            email.text.clear()
+                            password.text.clear()
+                            phone.text.clear()
+                        }
+                    val fitness= hashMapOf(
+                        "weight" to "0",
+                        "height" to "0",
+                        "Bmi" to "0"
+                    )
+                    db.collection("user").document(currenuser.toString())
+                        .collection("fitness").document("fit").set(fitness)
+
+
                 } else {
                     Toast.makeText(
                         activity,

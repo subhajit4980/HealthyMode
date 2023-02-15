@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.Spodemy.Home.Home_screen">
+    tools:context="Home.Home_screen">
 <FrameLayout
     android:id="@+id/frg"
     android:layout_width="match_parent"
@@ -13,13 +13,14 @@
     tools:ignore="NotSibling">
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/buttonnav"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/white"
-        app:itemTextColor="@color/black"
-        app:itemIconTint="@color/black"
+        app:itemIconTint="@drawable/icon_color"
+        app:itemTextColor="@drawable/icon_color"
         app:itemIconSize="30dp"
         app:itemPaddingBottom="5dp"
+        app:itemRippleColor="@color/dark_orange"
         app:menu="@menu/nav_menu"
         android:layout_gravity="bottom"/>
 

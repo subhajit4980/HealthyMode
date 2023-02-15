@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
@@ -19,6 +20,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_food_track.*
 import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
+
 class Food_track : AppCompatActivity() {
     private lateinit var w_RecyclerView: RecyclerView
     lateinit var adapter: FoodAdapter
@@ -34,9 +38,14 @@ class Food_track : AppCompatActivity() {
         w_RecyclerView=findViewById(R.id.frc)
         w_RecyclerView.layoutManager= LinearLayoutManager(this)
         rec_Arraylist= arrayListOf<Food>()
+        window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         food_data()
         dialog= Dialog(this)
-
+        val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Calcutta"))
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+        val second = calendar.get(Calendar.SECOND)
+        val formattedTime = "${String.format("%02d", hour)}:${String.format("%02d", minute)}:${String.format("%02d", second)}"
         add_food.setOnClickListener {
             dialog!!.setContentView(R.layout.pop_food)
             dialog!!.show()
@@ -63,7 +72,7 @@ class Food_track : AppCompatActivity() {
                         if (food_it != null) {
                             val fod = Food(
                                 curr_date.toString(),
-                                input.text.toString() + "\n" + food_it.toString()
+                                input.text.toString() + " "+formattedTime.toString() + "\n" + food_it.toString()
                             )
                             ref.child("foods")
                                 .child(curr_date.toString())
@@ -71,7 +80,7 @@ class Food_track : AppCompatActivity() {
                                 .addOnSuccessListener {
                                 }
                         } else {
-                            val fod = Food(curr_date.toString(), input.text.toString())
+                            val fod = Food(curr_date.toString(), input.text.toString()+ " "+ formattedTime.toString())
                             ref.child("foods")
                                 .child(curr_date.toString())
                                 .setValue(fod)

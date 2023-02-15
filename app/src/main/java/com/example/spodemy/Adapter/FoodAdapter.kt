@@ -33,6 +33,4 @@ class FoodAdapter(private  val foodd:ArrayList<Food>, private val context: Conte
     override fun onBindViewHolder(holder: MyVIewHolder, position: Int) {
         holder.initialize(foodd[position])
     }
-
-
 }
