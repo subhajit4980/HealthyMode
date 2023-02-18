@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    app:cardElevation="10dp"
     app:cardCornerRadius="20dp">
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
+        android:background="#EAEAEA"
         tools:ignore="RedundantNamespace">
         <TextView
             android:id="@+id/dt"
@@ -21,6 +23,7 @@
             android:paddingStart="10dp"
             android:text="Date :"
             android:textSize="17sp"
+            android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp" />
@@ -33,6 +36,7 @@
             android:gravity="bottom"
             android:paddingTop="3dp"
             android:text="11/10/2022"
+            android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/dt"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="1dp" />
@@ -43,6 +47,7 @@
             android:layout_height="wrap_content"
             android:text="No. of Glasses Taken:"
             android:textSize="17sp"
+            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@+id/dt"
             tools:ignore="MissingConstraints"
             android:paddingStart="10dp"/>
@@ -55,6 +60,7 @@
             android:gravity="bottom"
             android:paddingTop="3dp"
             android:text="5"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.009"

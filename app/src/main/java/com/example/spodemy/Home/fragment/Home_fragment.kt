@@ -38,6 +38,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.bumptech.glide.Glide
+import com.example.spodemy.Home.Food.Add_food
 import com.example.spodemy.R
 import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
@@ -83,6 +84,7 @@ class Home_fragment : Fragment(),SensorEventListener {
             {
                 reset()
             }
+            greeting_class()
             handler.postDelayed(this,1000)
 
         }
@@ -114,36 +116,10 @@ class Home_fragment : Fragment(),SensorEventListener {
             }.addOnFailureListener {
                 Toast.makeText(activity, "some thing went wrong", Toast.LENGTH_SHORT).show()
             }
-            val time:ImageView=root!!.findViewById(R.id.weather)
-            val greeting:TextView=root!!.findViewById(R.id.greeting)
-            val calendar = Calendar.getInstance()
-            val hour = calendar.get(Calendar.HOUR_OF_DAY)
-
-            if(hour.toInt() in 6..17)
-            {
-                time.setImageResource(R.drawable.sun)
-                if(hour.toInt() in 6..12)
-                {
-                    greeting.text="Good Morning !"
-                }
-                if(hour.toInt() in 13..14)
-                {
-                    greeting.text="Good Noon !"
-                }else if(hour.toInt() in 15..17){
-                    greeting.text="Good Afternoon !"
-                }
-            }else{
-                time.setImageResource(R.drawable.moon)
-                if(hour.toInt() in 18..19)
-                {
-                    greeting.text="Good Evening !"
-                }
-                else{
-                    greeting.text="Good Night !"
-                }
-            }
+//            greeting_class()
             existwater()
             addwater()
+            addfood()
         loadData()
 //        dataupload()
         var cpbar=root!!.findViewById<CircularProgressBar>(R.id.circularProgressBar)
@@ -184,6 +160,37 @@ class Home_fragment : Fragment(),SensorEventListener {
 
         sensorManager = requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
         return root
+    }
+
+    private fun greeting_class() {
+        val time:ImageView=root!!.findViewById(R.id.weather)
+        val greeting:TextView=root!!.findViewById(R.id.greeting)
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+
+        if(hour.toInt() in 6..17)
+        {
+            time.setImageResource(R.drawable.sun)
+            if(hour.toInt() in 6..12)
+            {
+                greeting.text="Good Morning !"
+            }
+            if(hour.toInt() in 13..14)
+            {
+                greeting.text="Good Noon !"
+            }else if(hour.toInt() in 15..17){
+                greeting.text="Good Afternoon !"
+            }
+        }else{
+            time.setImageResource(R.drawable.moon)
+            if(hour.toInt() in 18..19)
+            {
+                greeting.text="Good Evening !"
+            }
+            else{
+                greeting.text="Good Night !"
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -320,7 +327,7 @@ class Home_fragment : Fragment(),SensorEventListener {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun existwater()
     {
-//        val curr_date = LocalDate.now()
+        val curr_date = LocalDate.now()
         val water= mapOf(
             "Date" to curr_date.toString(),
             "glass" to "0"
@@ -349,5 +356,11 @@ class Home_fragment : Fragment(),SensorEventListener {
             }
         }
     }
-
+    private fun addfood() {
+        val add:ImageView=root!!.findViewById(R.id.add_food)
+        add.setOnClickListener {
+            val intent=Intent(activity,Add_food::class.java)
+            startActivity(intent)
+        }
+    }
 }

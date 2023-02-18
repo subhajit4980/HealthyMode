@@ -41,8 +41,13 @@ class Home_screen : AppCompatActivity() {
             true
         }
         checkpermission()
-//        val intent = Intent(this, MyService::class.java)
-//        startService(intent)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val intent = Intent(this, MyService::class.java)
+        startService(intent)
     }
 
     private fun checkpermission() {
