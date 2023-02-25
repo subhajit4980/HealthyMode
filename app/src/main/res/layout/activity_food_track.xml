@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".Home.Food.Food_track">
+    tools:context=".All_View.Food.Food_track">
     <TextView
         android:id="@+id/tit"
         android:layout_width="match_parent"

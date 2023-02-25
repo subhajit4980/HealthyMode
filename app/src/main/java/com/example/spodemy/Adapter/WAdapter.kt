@@ -4,8 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spodemy.Adapter.WAdapter.*
-import com.example.spodemy.Home.water.Water
-import com.example.spodemy.R
 import com.example.spodemy.data.water
 import com.example.spodemy.databinding.RecWaterBinding
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter

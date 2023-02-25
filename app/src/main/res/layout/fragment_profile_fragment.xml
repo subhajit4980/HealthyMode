@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    tools:context="Home.fragment.profile_fragment"
+    tools:context="All_View.fragment.profile_fragment"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +34,6 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Subahjit patra"
             android:textSize="20sp"
             android:gravity="center"
             android:paddingTop="5dp"
@@ -46,7 +45,6 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="subhajitpatra498@gmail.com"
             tools:ignore="MissingConstraints"
             app:layout_constraintTop_toBottomOf="@+id/username"
             app:layout_constraintStart_toEndOf="@+id/cd"
@@ -135,7 +133,6 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"/>
                 <TextView
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Food Tracker"

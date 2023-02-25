@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Home.Home_screen">
+    tools:context="All_View.Home_screen">
 <FrameLayout
     android:id="@+id/frg"
     android:layout_width="match_parent"

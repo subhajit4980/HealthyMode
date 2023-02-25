@@ -6,7 +6,7 @@
     android:background="@color/background"
     android:layout_height="match_parent"
 
-    tools:context=".Home.profile.Profile">
+    tools:context=".All_View.profile.Profile">
 
     <androidx.cardview.widget.CardView
         app:cardElevation="20dp"

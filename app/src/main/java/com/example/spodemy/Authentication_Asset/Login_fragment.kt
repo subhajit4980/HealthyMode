@@ -11,7 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.spodemy.Home.Home_screen
+import com.example.spodemy.All_View.Home_screen
 import com.example.spodemy.R
 //import com.github.ybq.android.spinkit.SpinKitView
 import com.google.android.material.textfield.TextInputLayout

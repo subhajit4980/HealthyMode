@@ -2,6 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/akaya_telivigala</item>
+        <item>@font/alata</item>
         <item>@font/allerta</item>
         <item>@font/bangers</item>
     </array>
