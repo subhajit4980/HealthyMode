@@ -7,6 +7,24 @@
         <item>Female</item>
         <item>Others</item>
     </string-array>
+    <string-array name="Measures">
+        <item>Ounce</item>
+        <item>Gram</item>
+        <item>Pound</item>
+        <item>Kilogram</item>
+        <item>Pinch</item>
+        <item>Liter</item>
+        <item>Cup</item>
+        <item>Tablespoon</item>
+        <item>Teaspoon</item>
+        <item>Drop</item>
+        <item>Fluid ounce</item>
+        <item>Gallon</item>
+        <item>Pint</item>
+        <item>Quart</item>
+        <item>Milliliter</item>
+
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -5,11 +5,11 @@ import android.app.Notification
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +26,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.spodemy.All_View.Food.Add_food
 import com.example.spodemy.R
 import com.example.spodemy.ResetStepCountWorker
+import com.example.spodemy.Utils.Common
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
@@ -72,6 +73,7 @@ class Home_fragment : Fragment() {
             }
             stepCounter()
             greeting_class()
+            getenergy()
             handler.postDelayed(this,1000)
 
         }
@@ -101,6 +103,7 @@ class Home_fragment : Fragment() {
             set_target()
             existwater()
             addwater()
+            getenergy()
             addfood()
         var cpbar=root!!.findViewById<CircularProgressBar>(R.id.circularProgressBar)
 //            reset step counter
@@ -117,17 +120,6 @@ class Home_fragment : Fragment() {
             {
                 Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
             }
-//            when fragment change control step counter
-//            val walk:TextView=root!!.findViewById(R.id.walk)
-//            var rec_walk:String?=null
-//            rec_walk=walk.text.toString()
-//            if(rec_walk==null || rec_walk=="0")
-//            {
-//                val currsteps = totalsteps.toInt() - previoustotalstep.toInt()
-//                walk.text = "$currsteps"
-//                dataupload("$currsteps",LocalDate.now().toString())
-//                cpbar.progress=currsteps.toFloat()
-//            }
             ////////////////////////////////////////////
 
 
@@ -271,8 +263,8 @@ class Home_fragment : Fragment() {
 //            cpbar.apply {
 //                setProgressWithAnimation(0.toFloat())
 //            }
-        val pre_step=loadData("step_count","total_step","0")!!.toInt()
-        savedata("step_count","previous_step",pre_step.toString())
+        val pre_step=Common.loadData(requireContext(),"step_count","total_step","0")!!.toInt()
+        Common.savedata(requireContext(),"step_count","previous_step",pre_step.toString())
         stepCounter()
          dataupload("0",LocalDate.now().toString())
     }
@@ -354,34 +346,38 @@ class Home_fragment : Fragment() {
 //    }
     fun stepCounter()
 {
-//    try{
-        val t_step=loadData("step_count","total_step","0").toString()
-        val pre_step=loadData("step_count","previous_step","0").toString()
+        val t_step=Common.loadData(requireContext(),"step_count","total_step","0").toString()
+        val pre_step=Common.loadData(requireContext(),"step_count","previous_step","0").toString()
         val curr_step= abs(t_step.toInt()-pre_step.toInt()).toString()
         val walk:TextView=root!!.findViewById(R.id.walk)
         walk.text=curr_step.toString()
         val cpbar=root!!.findViewById<CircularProgressBar>(R.id.circularProgressBar)
         cpbar.progress= curr_step.toFloat()
-//    }catch(e:java.lang.Exception) {
-//        android.widget.Toast.makeText(requireActivity(), e.message.toString(), Toast.LENGTH_SHORT).show()
-//    }
-
 
     }
-fun loadData(pre_nmae:String,key:String,default:String): String? {
-    val sharedPreferences: SharedPreferences =
-        requireActivity().getSharedPreferences(pre_nmae, Context.MODE_PRIVATE)
-    val saveNumber: String? = sharedPreferences.getString(key, default)
-    Log.d("mainActivity", "$saveNumber")
-    return saveNumber
-}
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun savedata(pre_nmae:String,key:String,value:String) {
-        val sharedPreferences: SharedPreferences =
-            requireActivity().getSharedPreferences(pre_nmae, Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putString(key, value.toString())
-        editor.apply()
+    fun getenergy()
+    {
+        val cal=root!!.findViewById<TextView>(R.id.calorie)
+        val cal_meter=root!!.findViewById<CircularProgressBar>(R.id.cal_meter)
+        val b_list=Common.breakfast_list.sumOf { it.calories.toInt() }
+        val m_list=Common.mornsnack_list.sumOf { it.calories.toInt() }
+        val lunch_list=Common.lunch_list.sumOf { it.calories.toInt() }
+        val evening_list=Common.evesnack_list.sumOf { it.calories.toInt() }
+        val dinner_list=Common.dinner_list.sumOf { it.calories.toInt() }
+        val total=(b_list+m_list+evening_list+lunch_list+dinner_list)
+        if(total>500)
+        {
+            cal_meter.progressBarColor=Color.RED
+        }else{
+            cal_meter.progressBarColor=Color.YELLOW
+
+        }
+//        val total=common.totalKcal
+        cal.text=total.toString()
+        cal_meter.setOnClickListener {
+            Toast.makeText(requireActivity(), "$total", Toast.LENGTH_SHORT).show()
+        }
+        cal_meter.progress=total.toFloat()
     }
 }
 

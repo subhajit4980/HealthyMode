@@ -49,6 +49,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:id="@+id/titl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
@@ -86,6 +87,7 @@
                             tools:ignore="NotSibling">
 
                             <TextView
+                                android:id="@+id/bT"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
@@ -96,10 +98,11 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/breakfast_rv1"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="200dp"
                                 android:layout_gravity="center_horizontal"
                                 android:padding="10dp"
                                 android:visibility="gone"
+                                tools:listitem="@layout/food_name"
                                 />
 
                         </androidx.cardview.widget.CardView>
@@ -161,6 +164,7 @@
                             tools:ignore="NotSibling">
 
                             <TextView
+                                android:id="@+id/Mt"
                                 android:layout_width="match_parent"
                                 android:layout_gravity="center"
                                 android:gravity="center"
@@ -169,9 +173,9 @@
 
                                 />
                             <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/ms_rv"
+                                android:id="@+id/msRv"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="200dp"
                                 android:layout_gravity="center_horizontal"
                                 android:padding="10dp"
                                 android:visibility="gone"
@@ -237,6 +241,7 @@
                             tools:ignore="NotSibling">
 
                             <TextView
+                                android:id="@+id/lun"
                                 android:layout_width="match_parent"
                                 android:layout_gravity="center"
                                 android:gravity="center"
@@ -247,7 +252,7 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/lunch_rv"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="200dp"
                                 android:layout_gravity="center_horizontal"
                                 android:padding="10dp"
                                 android:visibility="gone"
@@ -313,6 +318,7 @@
                             tools:ignore="NotSibling">
 
                             <TextView
+                                android:id="@+id/evSnack"
                                 android:layout_width="match_parent"
                                 android:layout_gravity="center"
                                 android:gravity="center"
@@ -323,7 +329,7 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/ev_rv"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="200dp"
                                 android:layout_gravity="center_horizontal"
                                 android:padding="10dp"
                                 android:visibility="gone"
@@ -389,6 +395,7 @@
                             tools:ignore="NotSibling">
 
                             <TextView
+                                android:id="@+id/dinT"
                                 android:layout_width="match_parent"
                                 android:layout_gravity="center"
                                 android:gravity="center"
@@ -399,7 +406,7 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/din_rv"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="200dp"
                                 android:layout_gravity="center_horizontal"
                                 android:padding="10dp"
                                 android:visibility="gone"

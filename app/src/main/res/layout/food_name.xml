@@ -3,24 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/transparent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="2dp">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/food_name"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        app:cardBackgroundColor="@color/grey"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="10dp"
+    android:paddingBottom="6dp">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edit_text"
+        android:backgroundTint="#EBE9E9"
+        app:cardCornerRadius="15dp"
         tools:ignore="MissingConstraints">
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chicken"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
+            >
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chicken"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/item_name"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calories"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                   />
+                <TextView
+                    android:id="@+id/calo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200"
+
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

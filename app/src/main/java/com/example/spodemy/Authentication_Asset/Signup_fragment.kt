@@ -63,13 +63,10 @@ class signup_fragment(): Fragment() {
 @SuppressLint("UseRequireInsteadOfGet")
 // create user for authentication
 fun createuser(){
-//        val dateofbirth=root!!.findViewById<EditText>(R.id.dob)
         var ffullname:EditText=root!!.findViewById(R.id.fullname)
-//        val mfullname=ffullname.text.toString()
         val phone:EditText=root!!.findViewById(R.id.phone)
         val email:EditText=root!!.findViewById(R.id.email)
         val password:EditText=root!!.findViewById(R.id.password)
-//        val DOB:EditText= root!!.findViewById(R.id.dob)
         val memail=email.text.toString()
         val mpassword=password.text.toString()
         val fAuth:FirebaseAuth= FirebaseAuth.getInstance()
