@@ -109,12 +109,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@color/white"
+            android:background="@color/background"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -123,6 +122,4 @@
             android:progressTint="@color/black"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

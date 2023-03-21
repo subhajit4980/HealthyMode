@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:theme="@style/Theme.HealthyMode"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".All_View.Reminder.Reminder">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/backward"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,UnusedAttribute" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="11dp"
+            android:fontFamily="@font/alata"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="Track Meal Reminder"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/switchMaterial"
+            app:layout_constraintStart_toEndOf="@+id/backward"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:thumbTint="@color/dark_orange"
+            app:trackTint="#9D9D9D"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="58dp"
+            android:text="Get reminded to track your meals"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="Food tracking reminders work best when set 30 mins post meal times. get into the habit of having 5 or more meals daily"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            tools:ignore="HardcodedText" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/textView7"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                >
+                <CheckBox
+                    android:id="@+id/breakfastcheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Breakfast"
+                    android:textSize="20sp"
+                    android:layout_marginStart="10dp"
+                    />
+                <EditText
+                    android:id="@+id/start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="09:30 AM"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="end"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:inputType="none"
+                    android:layout_marginStart="70dp"
+                    android:background="@color/transparent"
+                    android:focusable="false"
+                    android:clickable="false"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                >
+                <CheckBox
+                    android:id="@+id/MSnackcheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Morning Snack"
+                    android:textSize="20sp"
+                    android:layout_marginStart="10dp"
+                    />
+                <EditText
+                    android:id="@+id/MSnackstart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="09:30 AM"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="end"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:inputType="none"
+                    android:layout_marginStart="30dp"
+                    android:background="@color/transparent"
+                    android:focusable="false"
+                    android:clickable="false"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                >
+                <CheckBox
+                    android:id="@+id/Lunchcheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lunch"
+                    android:textSize="20sp"
+                    android:layout_marginStart="10dp"
+                    />
+                <EditText
+                    android:id="@+id/Lunchstart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="09:30 AM"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="end"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:inputType="none"
+                    android:layout_marginStart="90dp"
+                    android:background="@color/transparent"
+                    android:focusable="false"
+                    android:clickable="false"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                >
+                <CheckBox
+                    android:id="@+id/EVsnackcheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Evening Snack"
+                    android:textSize="20sp"
+                    android:layout_marginStart="10dp"
+                    />
+                <EditText
+                    android:id="@+id/EVsnackstart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="09:30 AM"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="end"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:inputType="none"
+                    android:layout_marginStart="30dp"
+                    android:background="@color/transparent"
+                    android:focusable="false"
+                    android:clickable="false"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                >
+                <CheckBox
+                    android:id="@+id/dinnercheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dinner"
+                    android:textSize="20sp"
+                    android:layout_marginStart="10dp"
+                    />
+                <EditText
+                    android:id="@+id/dinnerstart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="09:30 AM"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="end"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:inputType="none"
+                    android:layout_marginStart="90dp"
+                    android:background="@color/transparent"
+                    android:focusable="false"
+                    android:clickable="false"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:text="Save"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints,UnusedAttribute" />
+</androidx.constraintlayout.widget.ConstraintLayout>

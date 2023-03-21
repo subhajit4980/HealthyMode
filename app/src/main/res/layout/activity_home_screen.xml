@@ -4,26 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="All_View.Home_screen">
-<FrameLayout
+    android:background="@color/background"
+    tools:context=".All_View.Home.Home_screen">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_above="@+id/buttonnav"
     tools:ignore="NotSibling">
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/buttonnav"
-        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemIconTint="@drawable/icon_color"
-        app:itemTextColor="@drawable/icon_color"
+        android:layout_gravity="bottom"
         app:itemIconSize="30dp"
+        android:visibility="gone"
+        app:itemIconTint="@drawable/icon_color"
         app:itemPaddingBottom="5dp"
         app:itemRippleColor="@color/dark_orange"
-        app:menu="@menu/nav_menu"
-        android:layout_gravity="bottom"/>
+        app:itemTextColor="@drawable/icon_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/nav_menu" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

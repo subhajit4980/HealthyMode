@@ -142,7 +142,6 @@
                     android:text="0"
                     android:textSize="18dp"
                     tools:ignore="HardcodedText" />
-
             </LinearLayout>
 
             <LinearLayout

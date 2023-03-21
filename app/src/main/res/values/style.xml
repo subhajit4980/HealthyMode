@@ -8,4 +8,11 @@
     <style name="themesplash" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:statusBarColor">@color/dark_orange</item>
     </style>
+    <style name="Theme.picker" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="circle">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

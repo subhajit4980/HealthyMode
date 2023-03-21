@@ -1,11 +1,13 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:orientation="vertical"
     android:scrollbars="none"
-    tools:context="All_View.fragment.Home_fragment">
+    android:paddingBottom="50dp"
+    tools:context="All_View.Home_fragment.Home_fragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,7 +32,46 @@
             android:elevation="10dp"
             app:lottie_autoPlay="false"
             tools:ignore="MissingClass,MissingConstraints" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/net"
+            android:layout_width="match_parent"
+            android:background="#FF0000"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints"
+            >
 
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="130dp"
+                android:layout_marginEnd="7dp"
+                android:src="@drawable/nointernet"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.222"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="118dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
+                android:text="Slow or No Internet connection\n So, some features may not  work"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
             android:id="@+id/ban"
             android:layout_width="0dp"
@@ -42,9 +83,9 @@
             android:textColorHighlight="@color/black"
             android:textSize="20dp"
             android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/net"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/greet"
@@ -60,14 +101,14 @@
                 android:fontFamily="@font/akaya_telivigala"
                 android:text="Hello , "
                 android:paddingStart="10dp"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/akaya_telivigala"
-                android:text=""
                 android:textSize="22sp"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -77,7 +118,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/akaya_telivigala"
-                android:text=""
                 android:textSize="22sp"
                 android:paddingStart="10dp"
                 android:layout_marginBottom="10dp"
@@ -114,7 +154,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/greet">
-
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
@@ -123,7 +162,6 @@
                 android:paddingTop="1dp"
                 android:weightSum="2"
                 tools:ignore="MissingConstraints">
-
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/c1"
                     android:layout_width="150dp"
@@ -131,91 +169,97 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:outlineAmbientShadowColor="@color/dark_grey"
-                    android:outlineSpotShadowColor="@color/dark_grey"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView"
-                        app:layout_constraintStart_toStartOf="@+id/imageView">
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/deletewater"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginTop="50dp"
-                            android:layout_marginBottom="15dp"
-                            android:focusable="true"
-                            android:clickable="true"
-                            android:foreground="?attr/selectableItemBackground"
-                            android:background="@drawable/baseline_remove_circle_outline_24"
-                            app:layout_constraintBottom_toTopOf="@+id/water_level"
-                            app:layout_constraintEnd_toStartOf="@id/glass"
-                            app:layout_constraintStart_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageView
-                            android:id="@+id/glass"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="25dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/glass"
-                            app:flow_horizontalAlign="center"
-                            app:layout_constraintEnd_toStartOf="@+id/addwater"
-                            app:layout_constraintStart_toEndOf="@+id/deletewater"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="MissingConstraints" />
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/addwater"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginTop="50dp"
-                            android:layout_marginBottom="15dp"
-                            android:focusable="true"
-                            android:clickable="true"
-                            android:foreground="?attr/selectableItemBackground"
-                            android:background="@drawable/baseline_add_circle_outline_24"
-                            app:layout_constraintBottom_toTopOf="@+id/water_level"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/glass"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-
-                        <TextView
-                            android:id="@+id/water_level"
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="25sp"
-                            android:textStyle="bold"
-                            app:layout_constraintTop_toBottomOf="@+id/glass"
-                            tools:ignore="MissingConstraints" />
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="20dp"
+                            >
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/content"
+                                android:visibility="visible"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                                app:layout_constraintStart_toStartOf="@+id/imageView">
 
-                        <TextView
-                            android:id="@+id/textView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:text="Glasses of Water"
-                            android:textAlignment="center"
-                            android:textSize="17sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/water_level"
-                            tools:ignore="MissingConstraints" />
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/deletewater"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="50dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:focusable="true"
+                                    android:clickable="true"
+                                    android:foreground="?attr/selectableItemBackground"
+                                    android:background="@drawable/baseline_remove_circle_outline_24"
+                                    app:layout_constraintBottom_toTopOf="@+id/water_level"
+                                    app:layout_constraintEnd_toStartOf="@id/glass"
+                                    app:layout_constraintStart_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="UnusedAttribute" />
+
+                                <ImageView
+                                    android:id="@+id/glass"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginTop="25dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/glass"
+                                    app:flow_horizontalAlign="center"
+                                    app:layout_constraintEnd_toStartOf="@+id/addwater"
+                                    app:layout_constraintStart_toEndOf="@+id/deletewater"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="MissingConstraints" />
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/addwater"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="50dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:focusable="true"
+                                    android:clickable="true"
+                                    android:foreground="?attr/selectableItemBackground"
+                                    android:background="@drawable/baseline_add_circle_outline_24"
+                                    app:layout_constraintBottom_toTopOf="@+id/water_level"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/glass"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                                <TextView
+                                    android:id="@+id/water_level"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="25sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintTop_toBottomOf="@+id/glass"
+                                    tools:ignore="MissingConstraints" />
+
+                                <TextView
+                                    android:id="@+id/textView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Glasses of Water"
+                                    android:textAlignment="center"
+                                    android:textSize="17sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/water_level"
+                                    tools:ignore="MissingConstraints" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
                 </com.google.android.material.card.MaterialCardView>
 
                 <androidx.cardview.widget.CardView
@@ -253,7 +297,8 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.16000003" />
+                            app:layout_constraintVertical_bias="0.16000003"
+                            tools:ignore="HardcodedText" />
                         <View
                             android:id="@+id/sep"
                             android:layout_width="100dp"
@@ -311,7 +356,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="10dp"
+                app:cardElevation="7dp"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
                 tools:ignore="MissingConstraints">
                 <LinearLayout
@@ -398,7 +443,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="Kcal Eaten"
+                                android:text="cal Eaten"
                                 app:layout_constraintEnd_toEndOf="@+id/cal_lin"
                                 app:layout_constraintStart_toStartOf="@+id/cal_lin"
                                 app:layout_constraintTop_toBottomOf="@+id/cal_lin" />
@@ -414,11 +459,13 @@
                                 app:layout_constraintStart_toEndOf="@+id/cal_lin"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <ImageView
+                            <ImageButton
                                 android:id="@+id/add_food"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ic_baseline_add_circle_24"
+                                android:focusable="true"
+                                android:clickable="true"
+                                android:background="@drawable/ic_baseline_add_circle_24"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -442,7 +489,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     app:cardCornerRadius="20dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
                     app:cardElevation="10dp"
                     app:layout_constraintTop_toBottomOf="@+id/calorie_t">
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -506,6 +556,7 @@
                                 android:textSize="20sp"
                                 tools:ignore="MissingConstraints" />
                             <TextView
+                                android:id="@+id/target"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="20"
@@ -519,13 +570,15 @@
                                 android:textSize="20sp"
                                 tools:ignore="MissingConstraints" />
                         </LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/weight_"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/circle"
-                            android:padding="7dp"
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/weightButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/dark_orange"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:tint="@color/white"
+                            app:backgroundTint="@color/dark_orange"
                             android:src="@drawable/baseline_arrow_forward_ios_24"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -541,7 +594,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:weightSum="2"
                 app:layout_constraintTop_toBottomOf="@+id/weightc"
                 tools:ignore="MissingConstraints">
@@ -559,6 +612,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cvburn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_constraintEnd_toStartOf="@+id/imageView"
@@ -588,7 +642,7 @@
                             android:layout_marginEnd="5dp"
                             android:text="100"
                             android:textAlignment="center"
-                            android:textSize="25sp"
+                            android:textSize="20sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -663,5 +717,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

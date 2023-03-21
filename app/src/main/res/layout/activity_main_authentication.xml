@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".Authentication_Asset.MainAuthentication">
+    tools:context=".All_View.Authentication_View.MainAuthentication">
     <TextView
         android:id="@+id/title_text"
         android:layout_width="match_parent"

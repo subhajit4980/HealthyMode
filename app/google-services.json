@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:718133840615:android:ac88266c85da8f560d7042",
+        "android_client_info": {
+          "package_name": "com.example.HealthyMode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718133840615-eh936kcfsjd8732gq4hbrh3b1pqoqqr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgsnVmKf1ZUNmUEwIAAfJLZTZmlM4Jwgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718133840615-eh936kcfsjd8732gq4hbrh3b1pqoqqr2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:718133840615:android:e7ae2095eb4da9f50d7042",
         "android_client_info": {
           "package_name": "com.example.healthifyme"
