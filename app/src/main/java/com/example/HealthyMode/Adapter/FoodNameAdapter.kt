@@ -1,36 +1,47 @@
 package com.example.HealthyMode.Adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.HealthyMode.R
 import com.example.HealthyMode.data_Model.Nutrient
+import com.example.HealthyMode.databinding.FoodListBinding
 
 class FoodNameAdapter(val foodlist:ArrayList<Nutrient>):
     RecyclerView.Adapter<FoodNameAdapter.MyViewHolder>() {
-    inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        val food_name:TextView=itemView.findViewById(R.id.item_name)
-        val cal:TextView=itemView.findViewById(R.id.calo)
-        fun inialize(item: Nutrient)
-        {
-            food_name.text=item.foodName.toString()
-            cal.text=item.calories.toString()
-        }
-    }
+    inner class MyViewHolder(val binding: FoodListBinding) : RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view=LayoutInflater.from(parent.context).inflate(R.layout.food_name,parent,false)
-        return MyViewHolder(view)
+        val binding = FoodListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
     override fun getItemCount(): Int {
         return foodlist.size
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.food_name.text=foodlist[position].foodName
-        holder.inialize(foodlist[position])
+        with(holder){
+            with(foodlist[position]){
+                binding.itemName.text = this.foodName
+                binding.calo.text = this.calories
+                binding.amount.text = this.quantity
+                binding.unit.text = this.unit
+            }
+        }
     }
+
+//    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+//        with(holder){
+//            with(foodlist[position]){
+//                binding.text = this.name
+//                binding.tvExp.text = this.exp
+//            }
+//        }
+//        holder.apply {
+//            binding.food_name.text=foodlist[position].foodName
+//            cal.text=foodlist[position].calories
+//
+//        }
+//
+//    }
     private val touchHelper=object :ItemTouchHelper.SimpleCallback(
         0,ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
     ){
@@ -43,9 +54,12 @@ class FoodNameAdapter(val foodlist:ArrayList<Nutrient>):
         }
 
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            val position=viewHolder.adapterPosition
-            foodlist.removeAt(position)
-            notifyItemRemoved(position)
+            try {
+                val position=viewHolder.adapterPosition
+                foodlist.removeAt(position)
+                notifyItemRemoved(position)
+            }catch(_:IndexOutOfBoundsException){}
+
         }
     }
     fun attachswipetoDelete(rec_v:RecyclerView)

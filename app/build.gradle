@@ -120,4 +120,10 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.44"
 // timeline view
     implementation 'com.github.po10cio:TimeLineView:1.0.2'
+//
+    implementation 'com.robinhood.spark:spark:1.2.0'
+    implementation 'com.github.majorkik:SparkLineLayout:1.0.1'
+
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
+    implementation "androidx.paging:paging-common-ktx:3.1.1"
 }

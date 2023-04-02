@@ -17,7 +17,7 @@ class Notification:BroadcastReceiver() {
             .setSmallIcon(R.drawable.mainlogo)
             .setContentTitle(intent.getStringExtra(titleExtra))
             .setContentText(intent.getStringExtra(messageExtra))
-            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setPriority(NotificationCompat.PRIORITY_MAX).setStyle(NotificationCompat.BigTextStyle().bigText(intent.getStringExtra(messageExtra)))
             .build()
         val manager=context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(NOTIFICATION_ID,notification)

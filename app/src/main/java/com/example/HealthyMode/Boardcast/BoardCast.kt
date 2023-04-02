@@ -6,7 +6,8 @@ import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import com.example.HealthyMode.Service.Jobservice
+import androidx.core.content.ContextCompat
+import com.example.HealthyMode.Service.MyService
 import com.example.HealthyMode.Service.WaterService
 import com.example.HealthyMode.Utils.Constant
 
@@ -31,11 +32,16 @@ class BoardCast : BroadcastReceiver() {
             if (scheck == "1") {
                 jobScheduler.schedule(SjobInfo)
             }
-            val jobinfo = JobInfo.Builder(1, ComponentName(context, Jobservice::class.java))
-                .setMinimumLatency(10000)
-                .build()
-            jobScheduler.schedule(jobinfo)
-
+//            val jobinfo = JobInfo.Builder(1, ComponentName(context, Step_reset_service::class.java))
+//                .setMinimumLatency(10000)
+//                .build()
+//            jobScheduler.schedule(jobinfo)
+            val serviceIntent = Intent(context, MyService::class.java).apply {
+                action = MyService.ACTION_START
+            }
+            ContextCompat.startForegroundService(context!!, serviceIntent)
         }
+//        if(intent.action==BackupManager.ACTION_RESTORE_COMPLETE)
     }
+
 }

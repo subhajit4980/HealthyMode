@@ -1,14 +1,16 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="All_View.Home_fragment.Plans_fragment">
+    android:orientation="vertical"
+    android:id="@+id/contentp"
+    tools:context="UI.Home_fragment.Plans_fragment">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     >
     <TextView
         android:id="@+id/textView3"
@@ -114,7 +116,6 @@
                 app:cardElevation="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -166,6 +167,7 @@
         android:id="@+id/logindetails"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".77"
         app:layout_constraintHorizontal_bias="0.0"
@@ -201,7 +203,54 @@
             android:layout_marginBottom="20dp"
             />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Plans"
+        android:textAlignment="center"
+        android:fontFamily="@font/alata"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/one_side_curve"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp">
+            <FrameLayout
+                android:id="@+id/todolist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                />
+
+            <LinearLayout
+                android:id="@+id/add_plan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.92"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.81">
+                <ImageView
+                    android:id="@+id/addpost"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_baseline_add_circle_24" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -5,21 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".All_View.Authentication_View.MainAuthentication">
+    tools:context=".UI.Auth.MainAuthentication">
+<LinearLayout
+    android:id="@+id/title_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toTopOf="@id/logindetails"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:orientation="horizontal">
     <TextView
-        android:id="@+id/title_text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bangers"
+        android:paddingStart="5dp"
+        android:layout_gravity="left|center_vertical"
         android:letterSpacing=".0259"
-        android:text="Sp⚾demy"
-        android:textAlignment="center"
+        android:text="wellcome \nback!"
         android:textColor="#8A0E05"
-        android:textSize="45sp"
-        app:layout_constraintBottom_toTopOf="@id/logindetails"
+        android:textSize="50sp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view2"
+        android:layout_width="210dp"
+        android:layout_height="390dp"
+        android:elevation="10dp"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        android:paddingEnd="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_gravity="left"
+        app:lottie_rawRes="@raw/wellcome"
+        tools:ignore="MissingClass,MissingConstraints" />
+</LinearLayout>
+
 
 
 

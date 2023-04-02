@@ -11,9 +11,9 @@
         android:icon="@drawable/nav_bar_icon_plan"
         android:title="Plans"/>
     <item
-        android:id="@+id/diet"
-        android:icon="@drawable/baseline_food_bank_24"
-        android:title="Foods"/>
+        android:id="@+id/stats"
+        android:icon="@drawable/baseline_favorite_24"
+        android:title="Health"/>
     <item
         android:id="@+id/profile"
         android:icon="@drawable/ic_baseline_perm_identity_24"

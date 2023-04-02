@@ -5,10 +5,6 @@ import com.example.HealthyMode.TodoDatabase.Todo
 import com.example.HealthyMode.TodoDatabase.TodoDao
 
 class TodoRepository(val todoDao: TodoDao){
-//    fun getTodo(): LiveData<List<Todo>>
-//    {
-//        return todoDao.getTodo()
-//    }
     val planslist:LiveData<List<Todo>> =todoDao.getTodo()
     suspend fun insertTodo(todo:Todo)
     {

@@ -25,9 +25,7 @@ class WaterService : JobService() {
     @SuppressLint("LongLogTag")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStartJob(p0: JobParameters?): Boolean {
-//        CoroutineScope(Dispatchers.IO).launch {
         sheduleNotification(this@WaterService)
-//        }
 
         val Interval = Constant.loadData(this!!, "reminder", "interval", "1")!!.toLong() * 3600000
         val jobScheduler = this.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
@@ -48,7 +46,7 @@ class WaterService : JobService() {
         if (check == "1") {
             val intent = Intent(context, Notification::class.java)
             val title = "Time to drink water!"
-            val message = "Reminder to drink a glass of water now."
+            val message = "Reminder to drink a glass of water 💧💧💧now."
             intent.putExtra(titleExtra, title)
             intent.putExtra(messageExtra, message)
             val pendingIntent = PendingIntent.getBroadcast(

@@ -3,12 +3,15 @@ package com.example.HealthyMode.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.AnimationUtils
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.HealthyMode.R
 import com.example.HealthyMode.TodoDatabase.Todo
+
 
 class TodoAdapter(private val fragment: Fragment):
     RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
@@ -28,10 +31,13 @@ class TodoAdapter(private val fragment: Fragment):
             ed.text=item.End_date.toString()
             et.text=item.End_time.toString()
         }
+        val slide= AnimationUtils.loadAnimation(fragment.context, R.anim.popup)
+
+
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        val pop=PopupMenu()
         holder.inialize(plans[position])
+        setFadeAnimation(holder.itemView)
 
     }
     override fun onCreateViewHolder(
@@ -47,5 +53,10 @@ class TodoAdapter(private val fragment: Fragment):
     fun planslist(list:List<Todo>){
         plans=list
         notifyDataSetChanged()
+    }
+    private fun setFadeAnimation(view: View) {
+        val anim = AlphaAnimation(0.0f, 1.0f)
+        anim.duration = 1000
+        view.startAnimation(anim)
     }
 }

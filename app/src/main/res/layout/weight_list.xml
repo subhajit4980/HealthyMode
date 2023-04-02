@@ -23,13 +23,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
 
-            <View
-                android:layout_width="10dp"
-                android:layout_height="15dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/shapeableImageView"
                 android:layout_width="20dp"
@@ -41,7 +35,18 @@
                 app:shapeAppearance="@style/circle"
                 tools:ignore="MissingConstraints" />
 
-
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/baseline_keyboard_arrow_down_24"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shapeableImageView"
+                app:layout_constraintVertical_bias="0.9"
+                tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_view"

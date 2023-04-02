@@ -24,19 +24,19 @@ import java.util.*
 
 class MyService : Service(), SensorEventListener {
     private var running = false
-    private var totalsteps = 0f
+    private var totalsteps = 0
     private var step: String? = "400"
-    private var sensorManager: SensorManager? = null
-    private var steocounterListener: SensorEventListener? = null
-    private var notification: NotificationCompat.Builder? = null
-    private var notificationManager: NotificationManager? = null
+    private lateinit var sensorManager: SensorManager
+    private lateinit var steocounterListener: SensorEventListener
+    private lateinit var notification: NotificationCompat.Builder
+    private lateinit var notificationManager: NotificationManager
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        sensorManager!!.unregisterListener(steocounterListener)
+        sensorManager.unregisterListener(steocounterListener)
         stopSelf()
     }
 
@@ -83,11 +83,11 @@ class MyService : Service(), SensorEventListener {
 
     private fun step_count() {
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        val stepsensor: Sensor? = sensorManager!!.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+        val stepsensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
         if (stepsensor == null) {
             Toast.makeText(this, "sensor not working", Toast.LENGTH_SHORT).show()
         } else {
-            sensorManager!!.registerListener(this, stepsensor, SensorManager.SENSOR_DELAY_NORMAL)
+            sensorManager.registerListener(this, stepsensor, SensorManager.SENSOR_DELAY_NORMAL)
         }
     }
 
@@ -98,12 +98,13 @@ class MyService : Service(), SensorEventListener {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onSensorChanged(event: SensorEvent?) {
-        totalsteps = event!!.values[0]
+        val total_steps = event!!.values[0]
+        Constant.savedata(this, "step_count", "total_step", total_steps.toInt().toString())
         val previoustotalstep =
             Constant.loadData(this, "step_count", "previous_step", "0")!!.toInt() ?: 0
+        totalsteps=Constant.loadData(this, "step_count", "total_step", "0")!!.toInt() ?: 0
         val currsteps = totalsteps.toInt() - previoustotalstep!!
-        step = "$currsteps"
-        Constant.savedata(this, "step_count", "total_step", totalsteps.toInt().toString())
+//        step = "$currsteps"
         val target = Constant.loadData(this, "myPrefs", "target", "1000").toString()
         val curr_date = LocalDate.now().toString()
         if (Constant.isInternetOn(applicationContext)) {

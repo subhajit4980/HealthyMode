@@ -1,6 +1,7 @@
 package com.example.HealthyMode.Utils
 
 import android.annotation.SuppressLint
+import android.app.ActivityManager
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
@@ -97,7 +98,7 @@ Constant {
         lineChart.setTouchEnabled(false)
         lineChart.isDragEnabled = true
         lineChart.setScaleEnabled(false)
-        lineChart.animateXY(1000, 1000, Easing.EaseInExpo)
+        lineChart.animateX( 1000, Easing.EaseInExpo)
         val Yaxis = lineChart.axisLeft
         Yaxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         Yaxis.axisMinimum = 0f
@@ -226,15 +227,24 @@ Constant {
         calendar.set(Calendar.MILLISECOND, 0)
         return calendar.timeInMillis
     }
-    val breakfasttitle="Good Morning ⛺! It's Time for Breakfast"
+    val breakfasttitle="Good Morning 🏕 🌄! It's Time for Breakfast"
     val breakfastmessage="Start your day off right with a nutritious breakfast.\n Don't skip the most important meal of the day!"
-    val morningsnacktitle= "Snack Time! Grab a Healthy Bite"
+    val morningsnacktitle= "Snack Time 🥜🍎🍍! Grab a Healthy Bite"
     val moriningsnackmessage= "Boost your energy and keep hunger at bay with a healthy morning snack.\n Try a piece of fruit or a handful of nuts."
-    val lunchtitle="Lunch Break! Fuel Your Body"
+    val lunchtitle="Lunch Break 🍱 🍚! Fuel Your Body"
     val lunchmessage="Take a break from your busy day and refuel your body with a nutritious lunch.\n Choose whole grains, lean protein, and plenty of veggies."
-    val eveningsnacktitle="Time for a Snack! Keep it Light"
+    val eveningsnacktitle="Time for a Snack 🍿🍿! Keep it Light"
     val eveningmessage="Satisfy your hunger without overdoing it with a light evening snack.\n Try some air-popped popcorn or a small serving of Greek yogurt."
-    val dinnertitle="Dinner Time! Enjoy a Delicious Meal"
+    val dinnertitle="Dinner Time 🍽 😴! Enjoy a Delicious Meal"
     val dinnermessage="Sit down, relax, and savor a delicious dinner.\n Choose a balanced meal with plenty of veggies, whole grains, and a lean protein source."
-
+    fun isServiceRunning(serviceClass: Class<*>, context: Context): Boolean {
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val services = activityManager.getRunningServices(Integer.MAX_VALUE)
+        for (i in services.indices) {
+            if (serviceClass.name == services[i].service.className) {
+                return true
+            }
+        }
+        return false
+    }
 }

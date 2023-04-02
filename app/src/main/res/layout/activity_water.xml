@@ -7,7 +7,7 @@
     android:background="@color/background"
     android:orientation="vertical"
     android:scrollbars="none"
-    tools:context=".All_View.water.Water">
+    tools:context=".UI.water.Water">
     <ScrollView
         android:id="@+id/content"
         android:layout_width="match_parent"

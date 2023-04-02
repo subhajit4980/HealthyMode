@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:theme="@style/Theme.HealthyMode"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".All_View.Reminder.Reminder">
+    tools:context=".UI.Reminder.Reminder">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout12"

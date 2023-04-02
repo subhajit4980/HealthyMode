@@ -43,7 +43,7 @@ class SanitizeService : JobService() {
         val check = Constant.loadData(context, "Sanitizerreminder", "check", "0")
         if (check == "1") {
             val intent = Intent(context, Notification::class.java)
-            val title = "Time to sanitize your Hand 👐!"
+            val title = "Time to sanitize your Hand 👐🧴🧼!"
             val message = "Reminder to Sanitize Your Hand Properly For Healthy Life."
             intent.putExtra(titleExtra, title)
             intent.putExtra(messageExtra, message)

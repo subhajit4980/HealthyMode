@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainview"
     android:paddingBottom="45dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    tools:context=".All_View.Task.AddTask">
+    tools:context=".UI.Task.AddTask">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

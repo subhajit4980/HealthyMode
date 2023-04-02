@@ -11,33 +11,35 @@
 
     <CheckBox
         android:id="@+id/status"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
         android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/desc"
         android:layout_width="match_parent"
         android:layout_marginStart="35dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:text="The requirement is thatThe requirement is that the email and phone must be unique. In addition, each contact belongs to one or many groups, and each group can have zero or many contacts the email and phone must be unique. In addition, each contact belongs to one or many groups, and each group can have zero or many contacts"
         app:layout_constraintStart_toEndOf="@+id/status"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="HardcodedText,MissingConstraints" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/start"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="35dp"
+        android:orientation="horizontal"
+        android:paddingStart="5dp"
         app:layout_constraintStart_toEndOf="@+id/status"
         app:layout_constraintTop_toBottomOf="@+id/desc"
         tools:ignore="MissingConstraints">
@@ -70,21 +72,22 @@
             android:id="@+id/st"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:text="12:00"
-            android:layout_marginStart="5dp"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/sd"
             tools:ignore="HardcodedText"
             tools:layout_editor_absoluteY="0dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="35dp"
-        app:layout_constraintStart_toEndOf="@+id/status"
+        android:orientation="horizontal"
+        android:paddingStart="5dp"
+        app:layout_constraintStart_toStartOf="@+id/start"
         app:layout_constraintTop_toBottomOf="@+id/start"
         tools:ignore="MissingConstraints">
 

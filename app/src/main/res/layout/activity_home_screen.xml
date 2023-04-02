@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".All_View.Home.Home_screen">
+    tools:context=".UI.Home.Home_screen">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frg"
     android:layout_width="match_parent"
