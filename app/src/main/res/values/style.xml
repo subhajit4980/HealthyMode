@@ -15,4 +15,7 @@
     <style name="circle">
         <item name="cornerSize">50%</item>
     </style>
+    <style name="MySnackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="android:layout_marginBottom">60dp</item>
+    </style>
 </resources>

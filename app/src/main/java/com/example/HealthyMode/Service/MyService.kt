@@ -72,8 +72,8 @@ class MyService : Service(), SensorEventListener {
             .setOngoing(true)
             .setSilent(true)
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager!!.notify(1, notification!!.build())
-        startForeground(1, notification!!.build())
+        notificationManager.notify(1, notification.build())
+        startForeground(1, notification.build())
     }
 
     private fun stop() {

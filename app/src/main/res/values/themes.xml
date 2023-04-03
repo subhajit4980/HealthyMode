@@ -14,5 +14,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/background</item>
         <!-- Customize your theme here. -->
+        <item name="snackbarStyle">@style/MySnackbar</item>
     </style>
 </resources>

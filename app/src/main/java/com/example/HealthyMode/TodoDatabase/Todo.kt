@@ -8,10 +8,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "TODO")
-data class Todo (
-    @PrimaryKey(autoGenerate = true)
+data class Todo(
     @ColumnInfo(name="status")
-    val status:Int,
+    val status:Boolean,
     @ColumnInfo(name="Desc")
     val Desc:String,
     @ColumnInfo(name="Start_date")
@@ -23,5 +22,8 @@ data class Todo (
     @ColumnInfo(name="End_time")
     val End_time:String,
     @ColumnInfo(name="reminder")
-    val reminder: String
+    val reminder: String,
+    @ColumnInfo(name="time")
+    val time: Long,
+    @PrimaryKey(autoGenerate = true) val id:Int=0
 ):Parcelable

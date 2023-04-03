@@ -28,20 +28,6 @@ class FoodNameAdapter(val foodlist:ArrayList<Nutrient>):
         }
     }
 
-//    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        with(holder){
-//            with(foodlist[position]){
-//                binding.text = this.name
-//                binding.tvExp.text = this.exp
-//            }
-//        }
-//        holder.apply {
-//            binding.food_name.text=foodlist[position].foodName
-//            cal.text=foodlist[position].calories
-//
-//        }
-//
-//    }
     private val touchHelper=object :ItemTouchHelper.SimpleCallback(
         0,ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
     ){

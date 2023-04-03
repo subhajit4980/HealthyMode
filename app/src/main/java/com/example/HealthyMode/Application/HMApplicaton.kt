@@ -5,8 +5,6 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
-import com.example.HealthyMode.Repository.TodoRepository
-import com.example.HealthyMode.TodoDatabase.TodoDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
 import dagger.hilt.android.HiltAndroidApp
@@ -25,7 +23,4 @@ class HMApplicaton : Application() {
             notificationManager.createNotificationChannel(channel)
         }
     }
-
-    private val database by lazy { TodoDatabase.getDatabase(this@HMApplicaton) }
-    val repository by lazy { TodoRepository(database.todoDao()) }
 }

@@ -163,46 +163,6 @@
         </LinearLayout>
 
     </HorizontalScrollView>
-    <LinearLayout
-        android:id="@+id/logindetails"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".77"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:background="@drawable/vie_bg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nestedScrollView"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/vie_bg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicatorColor="@color/dark_orange"
-            app:tabSelectedTextColor="#6ACC07"
-            app:tabTextAppearance="@style/tab_text"
-            app:tabTextColor="#FF5722" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tab_layout"
-            android:paddingBottom="10dp"
-            android:layout_marginBottom="20dp"
-            />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:layout_width="match_parent"

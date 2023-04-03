@@ -30,9 +30,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import java.util.*
-
+@AndroidEntryPoint
 @Suppress("UNREACHABLE_CODE")
 class Home_screen : AppCompatActivity() {
     @RequiresApi(VERSION_CODES.TIRAMISU)
@@ -55,13 +56,14 @@ class Home_screen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.buttonnav.visibility = View.VISIBLE
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         checkpermission()
+        binding.buttonnav.visibility = View.VISIBLE
         val Home_fragment = Home_fragment()
         val plansFragment = Plans_fragment()
         val ProfileFragment = profile_fragment()
         val Weight = AddWeight()
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        val Stats=Stats()
         userDitails.collection("Weight track").get().addOnSuccessListener { snapshot ->
             if (snapshot.isEmpty) {
                 binding.buttonnav.visibility = View.GONE
@@ -83,13 +85,12 @@ class Home_screen : AppCompatActivity() {
                 }
                 binding.buttonnav.visibility = View.VISIBLE
                 buttonnav=binding.buttonnav
-//                Plans_fragment().hide(buttonnav)
                 binding.buttonnav.setOnNavigationItemSelectedListener {
                     when (it.itemId) {
                         R.id.home_t -> makeCurrentFrag(Home_fragment)
                         R.id.plan -> makeCurrentFrag(plansFragment)
                         R.id.profile -> makeCurrentFrag(ProfileFragment)
-                        R.id.stats -> makeCurrentFrag(Stats())
+                        R.id.stats -> makeCurrentFrag(Stats)
 
                     }
                     true

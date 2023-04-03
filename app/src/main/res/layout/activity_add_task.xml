@@ -199,40 +199,11 @@
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:orientation="horizontal"
-                android:weightSum="2"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="40dp"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/rem"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:hint="Set Reminder"
-                    app:boxCornerRadiusBottomEnd="15dp"
-                    app:boxCornerRadiusBottomStart="15dp"
-                    app:boxCornerRadiusTopEnd="15dp"
-                    app:boxCornerRadiusTopStart="15dp"
-                    app:boxStrokeColor="#F1C43D"
-                    app:boxStrokeErrorColor="#F60404"
-                    app:boxStrokeWidth="2dp"
-                    app:hintTextColor="@color/dark_orange"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout10"
-                    tools:ignore="HardcodedText,MissingConstraints">
 
-                    <EditText
-                        android:id="@+id/reminder"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:focusable="false"
-                        android:inputType="none"
-                        android:focusableInTouchMode="false"
-                        tools:ignore="SpeakableTextPresentCheck"
-                        android:drawableStart="@drawable/baseline_alarm_24"
-                        android:gravity="center" />
-                </com.google.android.material.textfield.TextInputLayout>
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/addplan"
                     android:layout_width="120dp"
