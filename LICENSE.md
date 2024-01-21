@@ -1,5 +1,3 @@
-MIT License
-
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yourusername/HealthyMood/blob/main/LICENSE)
 
 The HealthyMood app is licensed under the MIT License.
