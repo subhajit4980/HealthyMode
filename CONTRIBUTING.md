@@ -6,7 +6,7 @@ Thank you for considering contributing to the HealthyMood app! Your contribution
 
 1. Fork the HealthyMood repository.
 
-2. Clone your forked repository to your local machine:
+2. Clone your forked repository to your local machine: </br>
    ` git clone https://github.com/yourusername/HealthyMood.git `
 3. Create a new branch for your feature or bug fix:
    ` git checkout -b feature-name `
