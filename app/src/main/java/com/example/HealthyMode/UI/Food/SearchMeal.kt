@@ -9,15 +9,22 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.HealthyMode.R
-import com.example.HealthyMode.Utils.Constant
+import com.example.HealthyMode.UI.Food.ViewModel.Food_ViewModel
 import com.example.HealthyMode.data_Model.Nutrient
 import com.example.HealthyMode.databinding.SearchmealBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
+@AndroidEntryPoint
 class SearchMeal : AppCompatActivity() {
     private var unit_: String? = null
     private var fat: String? = null
@@ -28,11 +35,17 @@ class SearchMeal : AppCompatActivity() {
     private val df = DecimalFormat("#.##")
     private lateinit var loading: Dialog
     private lateinit var binding: SearchmealBinding
+    private lateinit var ViewModel: Food_ViewModel
+    private var userDitails: DocumentReference = Firebase.firestore.collection("user").document(
+        FirebaseAuth.getInstance().currentUser!!.uid.toString()
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = SearchmealBinding.inflate(layoutInflater)
+        ViewModel = ViewModelProvider(this)[Food_ViewModel::class.java]
         setContentView(binding.root)
-        window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         val measurement = resources.getStringArray(R.array.Measures)
         val arrayAdapter = ArrayAdapter(this, R.layout.dropdown, measurement)
         binding.unit.setAdapter(arrayAdapter)
@@ -71,8 +84,8 @@ class SearchMeal : AppCompatActivity() {
                                 pro: String,
                                 carbs: String,
                                 sugar: String,
-                                Unit:String,
-                                quantity:String
+                                Unit: String,
+                                quantity: String
                             ) {
                                 binding.fat.text = fat.toString()
                                 binding.prot.text = pro.toString()
@@ -115,80 +128,23 @@ class SearchMeal : AppCompatActivity() {
                             pro: String,
                             carbs: String,
                             sugar: String,
-                            Unit:String,
-                            quantity:String
+                            Unit: String,
+                            quantity: String
                         ) {
                             if (sugar.isNotEmpty() && pro.isNotEmpty() && carbs.isNotEmpty() && fat.isNotEmpty() && cal.isNotEmpty()) {
-                                if (list.toString() == "breakfast") {
-                                    Constant.breakfast_list.add(
-                                        Nutrient(
-                                            binding.foodName.text.toString(),
-                                            cal,
-                                            fat,
-                                            pro,
-                                            carbs,
-                                            sugar,
-                                            Unit,
-                                            quantity
-                                        )
+                                ViewModel.addFood(
+                                    Nutrient(
+                                        list.toString(),
+                                        binding.foodName.text.toString(),
+                                        cal,
+                                        fat,
+                                        pro,
+                                        carbs,
+                                        sugar,
+                                        Unit,
+                                        quantity
                                     )
-                                }
-                                if (list.toString() == "morn_snack") {
-                                    Constant.mornsnack_list.add(
-                                        Nutrient(
-                                            binding.foodName.text.toString(),
-                                            calories.toString(),
-                                            fat.toString(),
-                                            protein.toString(),
-                                            carbs.toString(),
-                                            sugar.toString(),
-                                            Unit,
-                                            quantity
-                                        )
-                                    )
-                                }
-                                if (list.toString() == "lunch") {
-                                    Constant.lunch_list.add(
-                                        Nutrient(
-                                            binding.foodName.text.toString(),
-                                            calories.toString(),
-                                            fat.toString(),
-                                            protein.toString(),
-                                            carbs.toString(),
-                                            sugar.toString(),
-                                            Unit,
-                                            quantity
-                                        )
-                                    )
-                                }
-                                if (list.toString() == "evening") {
-                                    Constant.evesnack_list.add(
-                                        Nutrient(
-                                            binding.foodName.text.toString(),
-                                            calories.toString(),
-                                            fat.toString(),
-                                            protein.toString(),
-                                            carbs.toString(),
-                                            sugar.toString(),
-                                            Unit,
-                                            quantity
-                                        )
-                                    )
-                                }
-                                if (list.toString() == "dinner") {
-                                    Constant.dinner_list.add(
-                                        Nutrient(
-                                            binding.foodName.text.toString(),
-                                            calories.toString(),
-                                            fat.toString(),
-                                            protein.toString(),
-                                            carbs.toString(),
-                                            sugar.toString(),
-                                            Unit,
-                                            quantity
-                                        )
-                                    )
-                                }
+                                )
                                 loading.dismiss()
                                 binding.nutrients.visibility = View.GONE
                                 binding.foodName.text!!.clear()
@@ -242,7 +198,15 @@ class SearchMeal : AppCompatActivity() {
                         response.getJSONObject("totalNutrients").getJSONObject("SUGAR")
                             .getDouble("quantity")
                     ).toString()
-                    callback.onSuccess(calories!!, fat!!, protein!!, carbs!!, sugar!!,Unit,quantity)
+                    callback.onSuccess(
+                        calories!!,
+                        fat!!,
+                        protein!!,
+                        carbs!!,
+                        sugar!!,
+                        Unit,
+                        quantity
+                    )
                 } catch (E: Exception) {
                     loading.dismiss()
                     binding.ER.visibility = View.VISIBLE
@@ -257,12 +221,21 @@ class SearchMeal : AppCompatActivity() {
     }
 
     interface ApiCallback {
-        fun onSuccess(cal: String, fat: String, pro: String, carbs: String, sugar: String,Unit:String,quantity:String)
+        fun onSuccess(
+            cal: String,
+            fat: String,
+            pro: String,
+            carbs: String,
+            sugar: String,
+            Unit: String,
+            quantity: String
+        )
+
         fun onError(error: String)
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this,Add_food::class.java))
+        startActivity(Intent(this, Add_food::class.java))
     }
 }

@@ -1,7 +1,9 @@
 package com.example.HealthyMode.FireStore.di
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.Module
@@ -14,10 +16,10 @@ import javax.inject.Singleton
 @Module
 object FirebaseModule {
     var userDitails: DocumentReference =  Firebase.firestore.collection("user").document(
-        FirebaseAuth.getInstance().currentUser!!.uid.toString())
+        FirebaseAuth.getInstance().currentUser!!.uid)
     @Provides
     @Singleton
-    fun provideFireStoreInstance(): DocumentReference {
-        return userDitails
+    fun provideFireStoreInstance(): CollectionReference {
+        return FirebaseFirestore.getInstance().collection("user")
     }
 }

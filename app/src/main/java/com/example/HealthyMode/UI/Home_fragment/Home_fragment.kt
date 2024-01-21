@@ -20,9 +20,12 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.airbnb.lottie.LottieAnimationView
 import com.example.HealthyMode.R
 import com.example.HealthyMode.UI.Food.Add_food
+import com.example.HealthyMode.UI.Food.Food_track
+import com.example.HealthyMode.UI.Food.ViewModel.Food_ViewModel
 import com.example.HealthyMode.UI.Reminder.MealReminder
 import com.example.HealthyMode.UI.weight.weight_track
 import com.example.HealthyMode.Utils.Constant
@@ -31,13 +34,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.round
 
-
+@AndroidEntryPoint
 @Suppress("SENSELESS_COMPARISON")
+@RequiresApi(Build.VERSION_CODES.O)
 class Home_fragment : Fragment() {
     private var sensorManager: SensorManager? = null
     private var no_glass: Int? = null
@@ -56,8 +61,6 @@ class Home_fragment : Fragment() {
         override fun run() {
             stepCounter()
             greeting_class()
-            getenergy()
-            Getlatestweight()
             if (!Constant.isInternetOn(requireContext())) {
                 binding.net.visibility = View.VISIBLE
             } else {
@@ -69,14 +72,13 @@ class Home_fragment : Fragment() {
     }
 
     @SuppressLint("SuspiciousIndentation", "CutPasteId")
-    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeFragmentBinding.inflate(inflater, container, false)
         handler.post(updatetimeRunnable)
-        try {
+//        try {
             dialog = Dialog(requireActivity())
             userDitails.addSnapshotListener { value, error ->
                 if (error != null) {
@@ -86,44 +88,61 @@ class Home_fragment : Fragment() {
                     binding.name.text = value.data!!["fullname"].toString()
                 }
             }
-            set_target()
+        set_target()
             existwater()
             addwater()
-            getenergy()
             addfood()
             addTarget()
-            binding.weightButton.setOnClickListener {
+            binding.apply {
+                weightButton.setOnClickListener {
                 startActivity(Intent(requireActivity(), weight_track::class.java))
             }
-            binding.mealrem.setOnClickListener {
-                startActivity(Intent(requireActivity(),MealReminder::class.java))
-            }
-            var cpbar = binding.circularProgressBar
-//            reset step counter
-            try {
-                cpbar.setOnClickListener {
+                mealrem.setOnClickListener {
+                    startActivity(Intent(requireActivity(), MealReminder::class.java))
+                }
+                circularProgressBar.setOnClickListener {
                     Toast.makeText(activity, "Long tap to reset steps", Toast.LENGTH_SHORT).show()
                 }
-                cpbar.setOnLongClickListener {
+                circularProgressBar.setOnLongClickListener {
                     reset()
                     true
                 }
-
-            } catch (e: Exception) {
-                Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
+                foodNut.setOnClickListener {
+                    startActivity(Intent(requireActivity(),Food_track::class.java))
+                }
             }
+
+//            var cpbar = binding.circularProgressBar
+////            reset step counter
+//            try {
+//                cpbar.setOnClickListener {
+//                    Toast.makeText(activity, "Long tap to reset steps", Toast.LENGTH_SHORT).show()
+//                }
+//                cpbar.setOnLongClickListener {
+//                    reset()
+//                    true
+//                }
+//
+//            } catch (e: Exception) {
+//                Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
+//            }
             ////////////////////////////////////////////
 
 
-        } catch (e: Exception) {
-            Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
-        }
+//        } catch (e: Exception) {
+//            Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
+//        }
         sensorManager = requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
         return binding.root
     }
 
     ///////////////////////////////////////////////
 
+    override fun onStart() {
+        super.onStart()
+        getenergy()
+        Getlatestweight()
+    }
 
     // greeting user
     private fun greeting_class() {
@@ -157,8 +176,7 @@ class Home_fragment : Fragment() {
         handler.removeCallbacks(updatetimeRunnable)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-//    control daily water intake
+    //    control daily water intake
     private fun addwater() {
         userDitails.collection("water track").document(LocalDate.now().toString())
             .addSnapshotListener { snapshot, e ->
@@ -224,7 +242,6 @@ class Home_fragment : Fragment() {
     }
 
     // reset the steps
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun reset() {
         val pre_step =
             Constant.loadData(requireContext(), "step_count", "total_step", "0")!!.toInt()
@@ -234,7 +251,6 @@ class Home_fragment : Fragment() {
     }
 
     //    upload steps data in firestore
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun dataupload(currsteps: String, curr_date: String) {
         val steps = hashMapOf(
             "steps" to currsteps.toString(),
@@ -245,7 +261,6 @@ class Home_fragment : Fragment() {
             .collection("steps").document(curr_date.toString()).set(steps)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun existwater() {
         val curr_date = LocalDate.now()
         val water = mapOf(
@@ -264,7 +279,6 @@ class Home_fragment : Fragment() {
     }
 
     //    update water level at UI textview
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun updatewater() {
         userDitails.collection("water track").document(curr_date.toString())
             .addSnapshotListener { snapshot, e ->
@@ -298,7 +312,6 @@ class Home_fragment : Fragment() {
         binding.goal.text = target.toString()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun stepCounter() {
         val t_step = Constant.loadData(requireContext(), "step_count", "total_step", "0").toString()
         val pre_step =
@@ -315,7 +328,6 @@ class Home_fragment : Fragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun addTarget() {
         dialog.setContentView(R.layout.pop_weight)
         val burn_target: NumberPicker = dialog.findViewById(R.id.loss)
@@ -348,29 +360,29 @@ class Home_fragment : Fragment() {
     fun getenergy() {
         val cal = binding.calorie
         val cal_meter = binding.calMeter
-        val b_list = Constant.breakfast_list.sumOf { it.calories.toInt() }
-        val m_list = Constant.mornsnack_list.sumOf { it.calories.toInt() }
-        val lunch_list = Constant.lunch_list.sumOf { it.calories.toInt() }
-        val evening_list = Constant.evesnack_list.sumOf { it.calories.toInt() }
-        val dinner_list = Constant.dinner_list.sumOf { it.calories.toInt() }
-        val total = (b_list + m_list + evening_list + lunch_list + dinner_list)
-        if (total > 500) {
-            cal_meter.progressBarColor = Color.RED
-        } else {
-            cal_meter.progressBarColor = Color.YELLOW
-
+        val ViewModel = ViewModelProvider(this)[Food_ViewModel::class.java]
+        val target=Constant.loadData(requireContext(), "calorie", "target", "100").toString().toFloat()
+        cal_meter.progressMax=target
+        binding.targetCal.text=target.toString()
+        ViewModel.calories.observe(viewLifecycleOwner) { nutrients ->
+            val total = nutrients.sum()
+            if (total > target) {
+                cal_meter.progressBarColor = Color.RED
+            } else {
+                cal_meter.progressBarColor = Color.YELLOW
+            }
+            cal.text = total.toString()
+            cal_meter.progress = total.toFloat()
         }
-//        val total=common.totalKcal
-        cal.text = total.toString()
-        cal_meter.progress = total.toFloat()
+
+        ViewModel.getCalories()
+
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun Getlatestweight() {
         binding.weight.text =
             Constant.loadData(requireContext(), "weight", "curr_w", "").toString()
         binding.target.text = Constant.loadData(requireContext(), "weight", "loss", "0").toString()
     }
-
 }
 

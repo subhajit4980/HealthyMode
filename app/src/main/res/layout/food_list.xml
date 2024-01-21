@@ -14,67 +14,71 @@
         android:backgroundTint="#EBE9E9"
         app:cardCornerRadius="15dp"
         tools:ignore="MissingConstraints">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
-            <TextView
-                android:id="@+id/item_name"
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Chicken"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/item_name"
-                android:weightSum="2">
+                android:layout_weight="1"
+                >
                 <TextView
-                    android:id="@+id/amount"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/item_name"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="23"
+                    android:text="Chicken"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    />
-                <TextView
-                    android:id="@+id/unit"
-                    android:layout_width="wrap_content"
+                    tools:ignore="HardcodedText" />
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ounce"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Calories"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                   />
-                <TextView
-                    android:id="@+id/calo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="200"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/item_name"
+                    android:weightSum="2">
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="23"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        />
+                    <TextView
+                        android:id="@+id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ounce"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calories"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        />
+                    <TextView
+                        android:id="@+id/calo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="200"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"/>
 
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

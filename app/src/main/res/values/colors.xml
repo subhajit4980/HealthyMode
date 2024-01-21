@@ -13,7 +13,9 @@
     <color name="dark_grey">#656262</color>
     <color name="grey">#DBDADA</color>
     <color name="transparent">#00FF9800</color>
-    <color name="GREEN">#4FFF03</color>
+    <color name="GREEN">#109F00</color>
     <color name="pbutton">#885406</color>
+    <color name="blue">#0832FF</color>
+    <color name="purple">#7400A6</color>
 
 </resources>

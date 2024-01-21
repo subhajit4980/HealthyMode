@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.codinginflow.mvvmtodo.ui.tasks.Adapter_todo
+import com.example.HealthyMode.Adapter.Adapter_todo
 import com.example.HealthyMode.TodoDatabase.Todo
 import com.example.HealthyMode.UI.Task.ViewModel.TodoModel
 import com.example.HealthyMode.databinding.FragmentTaskListBinding

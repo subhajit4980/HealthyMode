@@ -5,7 +5,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.app.backup.BackupManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -21,8 +20,8 @@ import com.example.HealthyMode.R
 import com.example.HealthyMode.Service.MyService
 import com.example.HealthyMode.UI.Home_fragment.Home_fragment
 import com.example.HealthyMode.UI.Home_fragment.Plans_fragment
+import com.example.HealthyMode.UI.Home_fragment.Profile.profile_fragment
 import com.example.HealthyMode.UI.Home_fragment.Stats
-import com.example.HealthyMode.UI.Home_fragment.profile_fragment
 import com.example.HealthyMode.Utils.Constant
 import com.example.HealthyMode.databinding.ActivityHomeScreenBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -67,6 +66,7 @@ class Home_screen : AppCompatActivity() {
         userDitails.collection("Weight track").get().addOnSuccessListener { snapshot ->
             if (snapshot.isEmpty) {
                 binding.buttonnav.visibility = View.GONE
+                binding.pro.visibility=View.GONE
                 supportFragmentManager.beginTransaction().apply {
                     add(R.id.frg, Weight)
                     commit()
@@ -97,12 +97,12 @@ class Home_screen : AppCompatActivity() {
                 }
             }
         }
-//        registerReceiver(BoardCast(), IntentFilter(BackupDataOutput.ACTION_RESTORE_COMPLETE))
-        // Request a backup of the specific preference and key
-        val backupManager = BackupManager(this)
-//        backupManager.dataChanged("step_count")
-
-//    }
+////        registerReceiver(BoardCast(), IntentFilter(BackupDataOutput.ACTION_RESTORE_COMPLETE))
+//        // Request a backup of the specific preference and key
+//        val backupManager = BackupManager(this)
+////        backupManager.dataChanged("step_count")
+//
+////    }
         userDitails.collection("fitness").document("health_report")
             .get().addOnSuccessListener { value ->
                 if (value != null && value.exists()) {
@@ -132,6 +132,7 @@ class Home_screen : AppCompatActivity() {
             replace(R.id.frg, Fragment)
             commit()
         }
+//        binding.pro.vie
     }
 
     @SuppressLint("NewApi")

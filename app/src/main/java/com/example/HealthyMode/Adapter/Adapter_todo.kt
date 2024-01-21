@@ -1,4 +1,4 @@
-package com.codinginflow.mvvmtodo.ui.tasks
+package com.example.HealthyMode.Adapter
 
 import android.graphics.Paint
 import android.view.LayoutInflater

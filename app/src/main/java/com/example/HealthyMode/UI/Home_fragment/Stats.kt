@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.HealthyMode.Utils.Constant
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.majorik.sparklinelibrary.SparkLineLayout
 import java.util.*
 import java.util.Collections.max
 import java.util.Collections.min
@@ -37,10 +39,20 @@ class Stats : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding=FragmentStatsBinding.inflate(inflater,container,false)
-        ui()
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        ui()
+    }
     private fun ui(){
+            userDitails.collection("fitness").document("health_report").addSnapshotListener { value, error ->
+                if (value!!.exists())
+                {
+                    Constant.savedata(requireContext(),"health","stats",value.get("data").toString())
+                }
+            }
           getDataFromSharedPreference()
           val splitParts = stats.split("?")
           setBloodPressure(splitParts[0], splitParts)
@@ -48,6 +60,7 @@ class Stats : Fragment() {
           setSugarPP(splitParts[2], splitParts)
           setCholesterol(splitParts[3], splitParts)
     }
+    @SuppressLint("SetTextI18n")
     private fun setBloodPressure(Concat: String, splitParts: List<String>) {
         val splitBloodPressure = Concat.split(":")
         val bloodPressureList: ArrayList<Int> = ArrayList()
@@ -59,7 +72,7 @@ class Stats : Fragment() {
         binding.bloodPressureRange.text = "Min: $bloodPressureMin, Max: $bloodPressureMax"
         binding.bloodPressure.setData(bloodPressureList)
         binding.addBloodPressureData.setOnClickListener {
-            addNewData(0, bloodPressureList, splitParts)
+            addNewData(0, bloodPressureList, splitParts,binding.bloodPressure)
         }
     }
 
@@ -76,7 +89,7 @@ class Stats : Fragment() {
         binding.sugarFastingRange.text = "Min: $sugarFastingMin, Max: $sugarFastingMax"
         binding.sugarFasting.setData(sugarFastingList)
         binding.addSugarFastingData.setOnClickListener {
-            addNewData(1, sugarFastingList, splitParts)
+            addNewData(1, sugarFastingList, splitParts,binding.sugarFasting)
         }
     }
 
@@ -93,7 +106,7 @@ class Stats : Fragment() {
         binding.sugarPP.setData(sugarPPList)
 
         binding.addSugarPPData.setOnClickListener {
-            addNewData(2, sugarPPList, splitParts)
+            addNewData(2, sugarPPList, splitParts,binding.sugarPP)
         }
     }
 
@@ -110,11 +123,11 @@ class Stats : Fragment() {
         binding.cholesterol.setData(cholesterolList)
 
         binding.addCholesterolData.setOnClickListener {
-            addNewData(3, cholesterolList, splitParts)
+            addNewData(3, cholesterolList, splitParts,binding.cholesterol)
         }
     }
 
-    private fun addNewData(ind: Int, List: ArrayList<Int>, splitParts: List<String>) {
+    private fun addNewData(ind: Int, List: ArrayList<Int>, splitParts: List<String>,stats:SparkLineLayout) {
         val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(requireActivity())
         builder.setTitle("Title")
         // Set up the input
@@ -127,17 +140,22 @@ class Stats : Fragment() {
         builder.setPositiveButton("Set", DialogInterface.OnClickListener { _, _ ->
             // Here you get get input text from the Edittext
             var newDataValue = input.text.toString().trim()
-            val queue: LinkedList<Int> = LinkedList(List)
-            queue.poll()
-            queue.offer(Integer.parseInt(newDataValue))
-            List.clear()
-            for (i in 0..4) {
-                List.add(queue.poll())
+            if(newDataValue.isEmpty()) {
+                Toast.makeText(requireContext(), " Enter the new data to set", Toast.LENGTH_SHORT).show()
+            }else{
+                val queue: LinkedList<Int> = LinkedList(List)
+                queue.poll()
+                queue.offer(Integer.parseInt(newDataValue))
+                List.clear()
+                for (i in 0..4) {
+                    List.add(queue.poll())
+                }
+                val merged = mergedData(ind, List, splitParts)
+                userDitails.collection("fitness").document("health_report").set(hashMapOf("data" to merged))
+                Constant.savedata(requireContext(),"health","stats",merged.toString())
+                stats.postInvalidate()
+                ui()
             }
-            val merged = mergedData(ind, List, splitParts)
-            userDitails.collection("fitness").document("health_report").set(hashMapOf("data" to merged))
-           Constant.savedata(requireContext(),"health","stats",merged.toString())
-            ui()
         })
         builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
         builder.show()

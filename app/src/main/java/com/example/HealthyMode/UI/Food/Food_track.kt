@@ -1,118 +1,159 @@
 package com.example.HealthyMode.UI.Food
 
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.Typeface
+import android.os.Build
+import android.os.Bundle
+import android.view.View
+import android.widget.NumberPicker
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import com.example.HealthyMode.Adapter.FoodAdapter
-import com.example.HealthyMode.data_Model.Food
+import androidx.appcompat.widget.AppCompatButton
+import androidx.lifecycle.ViewModelProvider
+import com.example.HealthyMode.R
+import com.example.HealthyMode.UI.Food.ViewModel.Food_ViewModel
+import com.example.HealthyMode.Utils.Constant
+import com.example.HealthyMode.databinding.FoodTrckBinding
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.utils.MPPointF
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.O)
 class Food_track : AppCompatActivity() {
-    private lateinit var w_RecyclerView: RecyclerView
-    lateinit var adapter: FoodAdapter
-    private lateinit var rec_Arraylist: ArrayList<Food>
-    private var food_it:String?=null
-    private var dialog:Dialog?=null
-//    @SuppressLint("MissingInflatedId", "SuspiciousIndentation")
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activ)
-//        val curr_date= LocalDate.now()
-//        w_RecyclerView=findViewById(R.id.frc)
-//        w_RecyclerView.layoutManager= LinearLayoutManager(this)
-//        rec_Arraylist= arrayListOf<Food>()
-//        window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//        food_data()
-//        dialog= Dialog(this)
-//        val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Calcutta"))
-//        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-//        val minute = calendar.get(Calendar.MINUTE)
-//        val second = calendar.get(Calendar.SECOND)
-//        val formattedTime = "${String.format("%02d", hour)}:${String.format("%02d", minute)}:${String.format("%02d", second)}"
-//        add_food.setOnClickListener {
-//            dialog!!.setContentView(R.layout.pop_weight)
-//            dialog!!.show()
-////            val input:TextInputEditText=dialog!!.findViewById(R.id.foodt)
-//            val add:AppCompatButton=dialog!!.findViewById(R.id.add)
-//            val ref: DatabaseReference =
-//                FirebaseDatabase.getInstance()
-//                    .getReference("Healthify/users/${FirebaseAuth.getInstance().currentUser!!.uid.toString()}")
-//                val Ref = FirebaseDatabase.getInstance()
-//                    .getReference("Healthify/users/${FirebaseAuth.getInstance().currentUser!!.uid.toString()}/foods/${curr_date.toString()}")
-//                    Ref.get().addOnCompleteListener(this) { task ->
-//                        if (task.isSuccessful) {
-//                            val dataSnapshot = task.result
-//                            food_it= dataSnapshot.child("foods").value?.toString()
-//
-//                        } else {
-//                            Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT)
-//                                .show()
-//                        }
-//                    }
-////            add.setOnClickListener {
-////                try{
-////                    if (input.text!!.isNotEmpty()) {
-////                        if (food_it != null) {
-////                            val fod = Food(
-////                                curr_date.toString(),
-////                                input.text.toString() + " "+formattedTime.toString() + "\n" + food_it.toString()
-////                            )
-////                            ref.child("foods")
-////                                .child(curr_date.toString())
-////                                .setValue(fod)
-////                                .addOnSuccessListener {
-////                                }
-////                        } else {
-////                            val fod = Food(curr_date.toString(), input.text.toString()+ " "+ formattedTime.toString())
-////                            ref.child("foods")
-////                                .child(curr_date.toString())
-////                                .setValue(fod)
-////                                .addOnSuccessListener {
-////                                }
-////                        }
-////                        dialog!!.dismiss()
-////                    } else {
-////                        input.error = "put food item"
-////                        return@setOnClickListener
-////                    }
-////                }catch (_:Exception)
-////                {
-////
-////                }
-////            }
-//        }
-//    }
-//
-//    private fun food_data() {
-//        val dbref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Healthify/users/${FirebaseAuth.getInstance().currentUser!!.uid.toString()}/foods")
-//        dbref.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                rec_Arraylist.clear()
-//                try {
-//                    if (snapshot.exists()) {
-//                        for (bookSnapshot in snapshot.children) {
-//                            val dns = bookSnapshot.getValue(Food::class.java)!!
-//                            rec_Arraylist.add(dns)
-//                        }
-//                        try{
-//                            if (rec_Arraylist.size > 1) {
-//                                rec_Arraylist = rec_Arraylist.reversed() as ArrayList<Food>
-//                            }
-//                        }catch (_:Exception){
-//
-//                        }
-//                        adapter = FoodAdapter(rec_Arraylist,this@Food_track)
-//                        w_RecyclerView.adapter = adapter
-//                    }
-//                } catch (e: Exception) {
-//                    Toast.makeText(this@Food_track, e.message, Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//
-//    }
+    private lateinit var binding:FoodTrckBinding
+    lateinit var pieChart: PieChart
+    private lateinit var dialog: Dialog
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding=FoodTrckBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        val ViewModel = ViewModelProvider(this)[Food_ViewModel::class.java]
+        dialog= Dialog(this)
+        ViewModel.nutrients.observe(this) {
+            pieChart = binding.pieChart
+            // on below line we are setting user percent value,
+            // setting description as enabled and offset for pie chart
+            pieChart.setUsePercentValues(true)
+            pieChart.getDescription().setEnabled(false)
+            pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+
+            // on below line we are setting drag for our pie chart
+            pieChart.setDragDecelerationFrictionCoef(0.95f)
+
+            // on below line we are setting hole
+            // and hole color for pie chart
+            pieChart.setDrawHoleEnabled(true)
+            pieChart.setHoleColor(Color.WHITE)
+
+            // on below line we are setting circle color and alpha
+            pieChart.setTransparentCircleColor(Color.WHITE)
+            pieChart.setTransparentCircleAlpha(110)
+
+            // on  below line we are setting hole radius
+            pieChart.setHoleRadius(58f)
+            pieChart.setTransparentCircleRadius(61f)
+
+            // on below line we are setting center text
+            pieChart.setDrawCenterText(true)
+
+            // on below line we are setting
+            // rotation for our pie chart
+            pieChart.setRotationAngle(0f)
+
+            // enable rotation of the pieChart by touch
+            pieChart.setRotationEnabled(true)
+            pieChart.setHighlightPerTapEnabled(true)
+
+            // on below line we are setting animation for our pie chart
+            pieChart.animateY(1400, Easing.EaseInOutQuad)
+
+            // on below line we are disabling our legend for pie chart
+            pieChart.legend.isEnabled = false
+            pieChart.setEntryLabelColor(Color.WHITE)
+            pieChart.setEntryLabelTextSize(12f)
+            // on below line we are creating array list and
+            // adding data to it to display in pie chart
+            val entries: ArrayList<PieEntry> = ArrayList()
+            entries.add(PieEntry(it[0]))
+            entries.add(PieEntry(it[1]))
+            entries.add(PieEntry(it[2]))
+            entries.add(PieEntry(it[3]))
+            // on below line we are setting pie data set
+            val dataSet = PieDataSet(entries, "Mobile OS")
+
+            // on below line we are setting icons.
+            dataSet.setDrawIcons(false)
+
+            // on below line we are setting slice for pie
+            dataSet.sliceSpace = 3f
+            dataSet.iconsOffset = MPPointF(0f, 40f)
+            dataSet.selectionShift = 5f
+
+            // add a lot of colors to list
+            val colors: ArrayList<Int> = ArrayList()
+            colors.add(resources.getColor(R.color.blue))
+            colors.add(resources.getColor(R.color.purple))
+            colors.add(resources.getColor(R.color.GREEN))
+            colors.add(resources.getColor(R.color.dark_orange))
+
+            // on below line we are setting colors.
+            dataSet.colors = colors
+
+            // on below line we are setting pie data set
+            val data = PieData(dataSet)
+            data.setValueFormatter(PercentFormatter())
+            data.setValueTextSize(15f)
+            data.setValueTypeface(Typeface.DEFAULT_BOLD)
+            data.setValueTextColor(Color.WHITE)
+            pieChart.setData(data)
+
+            // undo all highlights
+            pieChart.highlightValues(null)
+
+            // loading chart
+            pieChart.invalidate()
+            binding.apply {
+                progress.visibility=View.GONE
+                main.visibility=View.VISIBLE
+                carbs.text=it[0].toString()
+                sugar.text=it[1].toString()
+                pro.text=it[2].toString()
+                fat.text=it[3].toString()
+                dialog.setContentView(R.layout.pop_weight)
+                val calories_target: NumberPicker = dialog.findViewById(R.id.loss)
+                val add: AppCompatButton = dialog.findViewById(R.id.add)
+                calories_target.minValue = 0
+                calories_target.maxValue = 20
+                calories_target.wrapSelectorWheel = true
+                calories_target.displayedValues = Constant.calorieTarget
+                val save = Constant.loadData(this@Food_track, "calorie", "target", "500").toString()
+                targetCal.text=save.toString()
+                target.setOnClickListener {
+                    dialog.show()
+                    calories_target.value = Constant.calorieTarget.indexOf(save)
+                }
+                add.setOnClickListener {
+                    Constant.savedata(
+                        this@Food_track,
+                        "calorie",
+                        "target",
+                        Constant.calorieTarget[calories_target.value]
+                    )
+                    targetCal.text= Constant.calorieTarget[calories_target.value]
+                    dialog.dismiss()
+                }
+            }
+        }
+        ViewModel.getNutrients()
+
+    }
 }

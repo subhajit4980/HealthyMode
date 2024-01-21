@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -14,8 +15,9 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.HealthyMode.Adapter.Weight
-import com.example.HealthyMode.UI.weight.ViewModel.MyViewModel
+import com.example.HealthyMode.ChartRender.CustomMarkerView
 import com.example.HealthyMode.R
+import com.example.HealthyMode.UI.weight.ViewModel.MyViewModel
 import com.example.HealthyMode.Utils.Constant
 import com.example.HealthyMode.Utils.UIstate
 import com.example.HealthyMode.data_Model.weight
@@ -32,6 +34,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import java.time.LocalDate
 import java.util.*
+
 
 @AndroidEntryPoint
 class weight_track : AppCompatActivity() {
@@ -102,13 +105,14 @@ class weight_track : AppCompatActivity() {
 
     private fun customizeChart() {
         val lineChart = binding.weightchart
+        lineChart.setTouchEnabled(true)
         val Xaxis = lineChart.xAxis
         Xaxis.setDrawAxisLine(false)
         Xaxis.setDrawLabels(false)
 //            xAxis in bottom
         Xaxis.position = XAxis.XAxisPosition.BOTTOM
         val margin = resources.getDimensionPixelSize(R.dimen.chart_margin_bottom)
-        lineChart.setExtraOffsets(0f, margin.toFloat(), 0f, margin.toFloat())
+        lineChart.setExtraOffsets(10f, margin.toFloat(), 10f, margin.toFloat())
         val yAxis = lineChart.axisLeft
 //            set limitline
         val weight = Constant.loadData(this, "weight", "fixed", "$curr_weight")!!.toFloat()
@@ -121,6 +125,8 @@ class weight_track : AppCompatActivity() {
         limit.textSize = 15f
         limit.textColor = Color.BLUE
         limit.labelPosition = LimitLine.LimitLabelPosition.LEFT_BOTTOM
+        val mv = CustomMarkerView(this,R.layout.tvcontent,0L)
+        lineChart.markerView = mv
     }
 
     @SuppressLint("SuspiciousIndentation", "RestrictedApi")
@@ -184,12 +190,12 @@ class weight_track : AppCompatActivity() {
     }
 
     private fun timeLine() {
-        val ref = userDitails.collection("Weight track")
-        val query = ref
+        val query = userDitails.collection("Weight track")
         val recyclerOptions =
             FirestoreRecyclerOptions.Builder<weight>().setQuery(query, weight::class.java).build()
         val adapter = Weight(recyclerOptions)
         val w_RecyclerView = binding.timelineView
+        w_RecyclerView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
         w_RecyclerView.layoutManager = LinearLayoutManager(this)
         w_RecyclerView.adapter = adapter
         adapter.startListening()

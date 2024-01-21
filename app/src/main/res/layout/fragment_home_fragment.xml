@@ -72,20 +72,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/greet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/ban"
-                tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="-16dp">
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/akaya_telivigala"
-                    android:text="Hello , "
                     android:paddingStart="10dp"
+                    android:text="Hello , "
                     android:textSize="22sp"
                     tools:ignore="HardcodedText" />
 
@@ -102,10 +104,10 @@
                     android:id="@+id/greeting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/akaya_telivigala"
-                    android:textSize="22sp"
-                    android:paddingStart="10dp"
                     android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:paddingStart="10dp"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/name" />
 
@@ -125,13 +127,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Haldia,purba medinipur ,21 deg centr"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:visibility="gone"
                     app:layout_constraintHorizontal_bias="0.772"
                     app:layout_constraintTop_toBottomOf="@+id/weather"
                     app:layout_constraintVertical_bias="0.304" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -380,7 +383,6 @@
                                     app:cpb_progressbar_color="@color/dark_orange"
                                     app:cpb_progressbar_width="5dp"
                                     app:cpb_round_border="false"
-                                    app:cpb_progress="20"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
@@ -406,7 +408,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="left"
                                         android:layout_marginRight="5dp"
-                                        android:text="111"
+                                        android:text="0.0"
                                         android:textSize="20sp" />
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -429,12 +431,13 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
                                     android:text="cal Eaten"
+                                    android:textSize="17sp"
                                     app:layout_constraintEnd_toEndOf="@+id/cal_lin"
                                     app:layout_constraintStart_toStartOf="@+id/cal_lin"
                                     app:layout_constraintTop_toBottomOf="@+id/cal_lin" />
 
                                 <ImageView
-                                    android:id="@+id/food_his"
+                                    android:id="@+id/food_nut"
                                     android:layout_width="45dp"
                                     android:layout_height="45dp"
                                     android:src="@drawable/bar_chart"
@@ -640,7 +643,7 @@
                                 android:layout_marginStart="5dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="5dp"
-                                android:text="Kcal"
+                                android:text="cal"
                                 android:textStyle="italic"
                                 android:textAlignment="center"
                                 android:textSize="15sp"
@@ -692,10 +695,53 @@
                                 app:cpb_progressbar_color="#FFBF00"
                                 app:cpb_progressbar_width="10dp"
                                 app:cpb_round_border="false"
+                                app:cpb_progress="80"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 tools:ignore="MissingConstraints"
                                 tools:layout_editor_absoluteY="0dp" />
+                            <TextView
+                                android:id="@+id/hrs"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="36dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="8"
+                                android:textAlignment="center"
+                                android:textSize="20sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="Hrs"
+                                android:textStyle="italic"
+                                android:textAlignment="center"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toTopOf="@+id/sleepimg"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/hrs"
+                                app:layout_constraintVertical_bias="1.0"
+                                tools:ignore="HardcodedText" />
+
+                            <ImageView
+                                android:id="@+id/sleepimg"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginBottom="24dp"
+                                android:src="@drawable/img_1"
+                                app:layout_constraintBottom_toBottomOf="@+id/sleepbar"
+                                app:layout_constraintEnd_toEndOf="@+id/sleepbar"
+                                app:layout_constraintStart_toStartOf="@+id/sleepbar"
+                                tools:ignore="DuplicateIds" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>

@@ -2,6 +2,7 @@ package com.example.HealthyMode.UI.Auth
 
 //import com.github.ybq.android.spinkit.SpinKitView
 //import com.example.bookhub.databinding.SignupFragmentBinding
+//import kotlinx.android.synthetic.main.signup_fragment.*
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
@@ -16,14 +17,10 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.HealthyMode.R
-import com.example.HealthyMode.data_Model.User
-import com.example.HealthyMode.data_Model.fit
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-//import kotlinx.android.synthetic.main.signup_fragment.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -118,29 +115,7 @@ fun createuser(){
 
 
                     val currenuser=fAuth.currentUser!!.uid
-                    ref= FirebaseDatabase.getInstance().getReference("Healthify/users")
-//                    val getid=ref.push().key
                     val dob:TextView=root!!.findViewById(R.id.dob)
-                    val User= User(ffullname.text.toString(),email.text.toString(),password.text.toString(),phone.text.toString(),dob.text.toString(),chn!!.toString())
-                    ref.child(currenuser).setValue(User).addOnSuccessListener {
-                        val ref: DatabaseReference =
-                            FirebaseDatabase.getInstance()
-                                .getReference("Healthify/users/${currenuser.toString()}")
-                        val fit = fit("0","0","0")
-                        ref.child("Fitness").setValue(fit)
-                            .addOnSuccessListener {
-                            }
-                        ffullname.text.clear()
-                        email.text.clear()
-                        password.text.clear()
-                        phone.text.clear()
-                    }.addOnFailureListener{
-                        Toast.makeText(
-                            activity,
-                            "something going wrong",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
 //firestore data store
                     val usermap= hashMapOf(
                         "fullname" to ffullname.text.toString().trim(),
@@ -148,7 +123,7 @@ fun createuser(){
                         "password" to password.text.toString().trim(),
                         "phone" to phone.text.toString().trim(),
                         "dob" to dob.text.toString().trim(),
-                        "gender" to chn.toString().trim()
+                        "gender" to chn.toString().trim(),
                     )
                     db.collection("user").document(currenuser.toString()).set(usermap)
                         .addOnSuccessListener {
@@ -157,15 +132,6 @@ fun createuser(){
                             password.text.clear()
                             phone.text.clear()
                         }
-                    val fitness= hashMapOf(
-                        "weight" to "0",
-                        "height" to "0",
-                        "Bmi" to "0"
-                    )
-                    db.collection("user").document(currenuser.toString())
-                        .collection("fitness").document("fit").set(fitness)
-
-
                 } else {
                     Toast.makeText(
                         activity,

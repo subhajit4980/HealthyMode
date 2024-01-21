@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.HealthyMode.ChartRender.CustomMarkerView
 import com.example.HealthyMode.R
 import com.example.HealthyMode.Service.MyService
 import com.example.HealthyMode.Utils.Constant
@@ -109,6 +110,8 @@ class StepsTrack : AppCompatActivity() {
     private fun plotchart() {
         val year = chyear ?: LocalDate.now().year.toString()
         val month = chmonth ?: LocalDate.now().month.toString()
+//        val num=Month.valueOf(month).value
+//        val msec=year.toLong()*31_536_000_000L +(num.toLong()*30.44 * 24 * 60 * 60 * 1000).toLong()
         userDitails.collection("steps").get().addOnSuccessListener { result ->
             val entries = ArrayList<Entry>()
             for (document in result) {
@@ -133,7 +136,9 @@ class StepsTrack : AppCompatActivity() {
             val Xaxis=lineChart.xAxis
             Xaxis.labelCount=entries.size
             val margin=resources.getDimensionPixelSize(R.dimen.chart_margin_bottom)
-            lineChart.setExtraOffsets(0f,margin.toFloat(),0f, margin.toFloat())
+            lineChart.setExtraOffsets(10f,margin.toFloat(),10f, margin.toFloat())
+            val mv = CustomMarkerView(this,R.layout.tvcontent, 1L)
+            lineChart.markerView=mv
             Constant.Lineplot(lineChart,entries,true)
 
         }

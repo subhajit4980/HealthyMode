@@ -20,6 +20,7 @@
             android:textSize="25sp"
             android:padding="10dp"
             android:gravity="center"
+            android:background="@color/background"
             android:textColor="@color/black"
             />
         <androidx.core.widget.NestedScrollView
@@ -407,7 +408,6 @@
                                 />
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/din_rv"
-                                android:background="@color/dark_orange"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"

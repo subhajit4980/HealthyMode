@@ -1,11 +1,12 @@
 package com.example.HealthyMode.data_Model
 
 data class Nutrient(
-    val foodName: String,
-    val calories:String,
-    val fat: String,
-    val protien:String,
-    val carbs:String,
-    val sugar:String,
-    val unit:String,
-    val quantity:String)
+    val time:String?=null,
+    val foodName: String?=null,
+    val calories:String?=null,
+    val fat: String?=null,
+    val protien:String?=null,
+    val carbs:String?=null,
+    val sugar:String?=null,
+    val unit:String?=null,
+    val quantity:String?=null)
