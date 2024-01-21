@@ -53,7 +53,7 @@
 
 ## Contributing
 
-Contributions are welcome! Please follow our `[contributing guidelines](CONTRIBUTING.md)`.
+Contributions are welcome! Please follow our [`contributing guidelines`](CONTRIBUTING.md).
 
 ## License
 
